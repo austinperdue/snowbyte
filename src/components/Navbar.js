@@ -11,7 +11,7 @@ import { AppBar } from '@mui/material';
 import AcUnitRoundedIcon from '@mui/icons-material/AcUnitRounded';
 
 // pages for navbar
-const pages = ['Home', 'Explore', 'FAQ', 'Contact'];
+const pages = ['Home', 'Explore', 'Stay', 'Dine', 'Faq'];
 // settings for user account
 const settings = ['Account', 'Logout'];
 // controls spacing between links
