@@ -108,7 +108,9 @@ export default function Home() {
                         <Typography>test</Typography>
                         <Box>
                             <Typography>test</Typography>
+                            <Typography>test</Typography>
                         </Box>
+                        <Typography>test</Typography>
                     </Grid>
                 </Grid>
             </Box>
