@@ -2,7 +2,7 @@
 import React from 'react';
 
 // material ui imports
-import { Container, Toolbar, Typography, Box, IconButton, Menu, MenuItem } from '@mui/material';
+import { Container, Toolbar, Typography, Box, IconButton, Menu, MenuItem, Popover, MenuList, ListItem, ListItemText } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 
@@ -24,6 +24,9 @@ export default function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+
+
+
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -40,7 +43,7 @@ export default function Navbar() {
     };
 
     return (
-        <AppBar position="absolute" sx={{backgroundColor: 'transparent'}}>
+        <AppBar position="absolute" sx={{ backgroundColor: 'transparent' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AcUnitRoundedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -119,25 +122,34 @@ export default function Navbar() {
                     >
                         snowbyte
                     </Typography>
-                    <Box sx={{ flexGrow: 3, display: { xs: 'none', md: 'flex', marginLeft: 75} }}>
+
+
+                    <Box sx={{ flexGrow: 3, display: { xs: 'none', md: 'flex', marginLeft: 75 } }}>
                         {pages.map((page) => (
                             <Button
                                 key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ 
-                                    my: 2, 
-                                    color: 'white', 
+                                sx={{
+                                    my: 2,
+                                    color: 'white',
                                     display: 'block',
                                     fontFamily: 'Russo One, sans-serif',
                                     fontSize: '1rem',
                                     marginLeft: link_spacing === 0 ? 3 : 1,
-                            }}
+                                    // change color on hover
+                                    '&:hover': {
+                                        color: 'black',
+                                        backgroundColor: 'transparent',
+                                    },
+                                }}
                             >
                                 {page}
                             </Button>
                         ))}
                     </Box>
-                    
+
+
+                    {/* will add sign in button here */}
+
                     {/* Avatar box */}
                     {/* <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
