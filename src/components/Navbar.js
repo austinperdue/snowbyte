@@ -2,8 +2,7 @@
 import React from 'react';
 
 // material ui imports
-import { Container, Toolbar, Typography, Box, IconButton, Menu, MenuItem, Avatar, Tooltip } from '@mui/material';
-import AdbIcon from '@mui/icons-material/Adb';
+import { Container, Toolbar, Typography, Box, IconButton, Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 
@@ -15,6 +14,8 @@ import AcUnitRoundedIcon from '@mui/icons-material/AcUnitRounded';
 const pages = ['Home', 'Explore', 'FAQ', 'Contact'];
 // settings for user account
 const settings = ['Account', 'Logout'];
+// controls spacing between links
+let link_spacing = 0;
 
 
 
@@ -39,7 +40,7 @@ export default function Navbar() {
     };
 
     return (
-        <AppBar position="fixed" sx={{backgroundColor: 'lightblue'}}>
+        <AppBar position="absolute" sx={{backgroundColor: 'transparent'}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AcUnitRoundedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -48,20 +49,21 @@ export default function Navbar() {
                         noWrap
                         component="a"
                         href="/"
+                        className='logo-text'
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
+                            letterSpacing: '.1rem',
                             color: 'inherit',
                             textDecoration: 'none',
+                            fontSize: { xs: '1.5rem', md: '1.8rem' },
+                            fontFamily: 'Russo One, sans-serif',
                         }}
                     >
                         snowbyte
                     </Typography>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none', } }}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -87,7 +89,7 @@ export default function Navbar() {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: { xs: 'block', md: 'none' },
+                                display: { xs: 'block', md: 'none', },
                             }}
                         >
                             {pages.map((page) => (
@@ -103,25 +105,33 @@ export default function Navbar() {
                         noWrap
                         component="a"
                         href=""
+                        className='logo-text'
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
+                            letterSpacing: '.1rem',
                             color: 'inherit',
                             textDecoration: 'none',
+                            fontSize: { xs: '1.5rem', md: '1.8rem' },
+                            fontFamily: 'Russo One, sans-serif',
                         }}
                     >
                         snowbyte
                     </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ flexGrow: 3, display: { xs: 'none', md: 'flex', marginLeft: 75} }}>
                         {pages.map((page) => (
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                sx={{ 
+                                    my: 2, 
+                                    color: 'white', 
+                                    display: 'block',
+                                    fontFamily: 'Russo One, sans-serif',
+                                    fontSize: '1rem',
+                                    marginLeft: link_spacing === 0 ? 3 : 1,
+                            }}
                             >
                                 {page}
                             </Button>
