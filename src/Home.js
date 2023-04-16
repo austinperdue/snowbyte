@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Container, Box, Typography, Button, Grid } from '@mui/material';
+import VideoSection from './components/VideoSection';
+import Amenities from './components/Amenities';
+import Partners from './components/Partners';
 
 
 
@@ -9,7 +12,7 @@ import { Container, Box, Typography, Button, Grid } from '@mui/material';
 export default function Home() {
     return (
         <div>
-            <Box maxWidth="false">
+            <Box maxwidth="100%">
                 <Box
                     sx={{
                         width: '100%',
@@ -18,12 +21,7 @@ export default function Home() {
                         overflow: 'hidden',
                         top: 0,
                         left: 0,
-                        zIndex: -1,
-
-                        /* debuggy stuff */
-                        border: 0,
-                        borderColor: 'red',
-                        borderWidth: 1,
+                        //zIndex: -1,
                     }}
                 >
                     <Box
@@ -86,8 +84,7 @@ export default function Home() {
                                 '&:hover': {
                                     backgroundColor: 'white',
                                     borderColor: 'white',
-                                    color: 'black',
-                                    borderColor: 'white',
+                                    color: 'black'
                                 }
                             }}
                         >
@@ -96,22 +93,101 @@ export default function Home() {
                     </Box>
                 </Box>
             </Box>
-            <Box 
-                sx={{ 
+
+
+            <br></br>
+            <br></br>
+            <br></br>
+            <Box
+                sx={{
                     flexGrow: 1,
-                    border: 0,
-                        borderColor: 'red',
-                        borderWidth: 1,
-                    }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={6} md={8}>
-                        <Typography>test</Typography>
-                        <Box>
-                            <Typography>test</Typography>
+                    width: '100%',
+                }}
+            >
+                <Grid container spacing={7} sx={{ width: '100%', margin: 0}}>
+                    <Grid item xs={12} md={6}>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'flex-start',
+                                height: '100%',
+                                paddingLeft: { xs: 2, md: 8 },
+                            }}
+                        >
+                            <Typography
+                                variant='h3'
+                                fontWeight="bold"
+
+
+                                sx={{
+                                    fontFamily: 'Russo One, sans-serif',
+                                    fontSize: { xs: '2rem', md: '4rem' },
+                                }}
+                            >
+                                Planning a trip?
+                            </Typography>
+                            <br></br>
+                            <br></br>
+                            <Typography
+                                variant="h5"
+                                sx={{
+                                    fontFamily: 'Bitter, serif'
+                                }}
+                            >
+                                Let us help you.
+                            </Typography>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                height: '100%',
+                                paddingRight: { xs: 2, md: 4 },
+
+                            }}
+                        >
+                            <Typography
+                                variant="body1"
+                                sx={{
+                                    textAlign: 'justify',
+                                    fontFamily: 'Bitter, serif'
+                                }}
+                            >
+                                Whether you're looking for a relaxing getaway 
+                                or an action-packed adventure, our team of experienced 
+                                professionals can help you plan the perfect trip. We offer a 
+                                range of services, including accommodation bookings, 
+                                transportation arrangements, and activity recommendations. 
+                                Contact us today to learn more about how we can make your 
+                                dream vacation a reality.
+                            </Typography>
                         </Box>
                     </Grid>
                 </Grid>
             </Box>
+
+            <br></br>
+            <br></br>            
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <VideoSection />
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Amenities />
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Partners />
 
         </div>
     );

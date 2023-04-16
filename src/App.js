@@ -2,7 +2,9 @@ import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import pages
 import Home from './Home';
+import FAQ from './FAQ';
 import { CssBaseline } from '@mui/material';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -12,7 +14,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} exact />
+          <Route path='/Home' element={<Home />} exact />
+          <Route path="/faq" element={<FAQ /> } exact />
         </Routes>
+        <Footer />
       </Router>
     </>
   );

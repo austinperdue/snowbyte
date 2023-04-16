@@ -1,4 +1,4 @@
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import React from 'react';
 
 // material ui imports
@@ -43,10 +43,22 @@ export default function Navbar() {
     };
 
     return (
-        <AppBar position="absolute" sx={{ backgroundColor: 'transparent' }}>
+        <AppBar
+            position="fixed"
+            elevation={2}
+            sx={{
+                backgroundColor: 'white',
+            }}
+        >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AcUnitRoundedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    <AcUnitRoundedIcon
+                        sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            mr: 1,
+                            color: 'black',
+                        }}
+                    />
                     <Typography
                         variant="h6"
                         noWrap
@@ -57,7 +69,7 @@ export default function Navbar() {
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
                             letterSpacing: '.1rem',
-                            color: 'inherit',
+                            color: 'black',
                             textDecoration: 'none',
                             fontSize: { xs: '1.5rem', md: '1.8rem' },
                             fontFamily: 'Russo One, sans-serif',
@@ -73,7 +85,7 @@ export default function Navbar() {
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             onClick={handleOpenNavMenu}
-                            color="inherit"
+                            color="black"
                         >
                             <MenuIcon />
                         </IconButton>
@@ -96,25 +108,39 @@ export default function Navbar() {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
+                                <Link
+                                    key={page}
+                                    to={`/${page.toLowerCase()}`}
+                                    style={{ textDecoration: 'none', color: 'inherit' }}
+                                >
+                                    <MenuItem onClick={handleCloseNavMenu}>
+                                        <Typography textAlign="center">{page}</Typography>
+                                    </MenuItem>
+                                </Link>
                             ))}
                         </Menu>
                     </Box>
-                    <AcUnitRoundedIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    <AcUnitRoundedIcon
+                        sx={{
+                            display: {
+                                xs: 'flex',
+                                md: 'none'
+                            },
+                            mr: 1,
+                            color: 'black',
+                        }} />
                     <Typography
                         variant="h5"
                         noWrap
                         component="a"
-                        href=""
+                        href="/"
                         className='logo-text'
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
                             letterSpacing: '.1rem',
-                            color: 'inherit',
+                            color: 'black',
                             textDecoration: 'none',
                             fontSize: { xs: '1.5rem', md: '1.8rem' },
                             fontFamily: 'Russo One, sans-serif',
@@ -128,16 +154,18 @@ export default function Navbar() {
                         {pages.map((page) => (
                             <Button
                                 key={page}
+                                component={Link}
+                                to={`/${page.toLowerCase()}`}
                                 sx={{
                                     my: 2,
-                                    color: 'white',
+                                    color: 'black',
                                     display: 'block',
                                     fontFamily: 'Russo One, sans-serif',
                                     fontSize: '1rem',
                                     marginLeft: link_spacing === 0 ? 3 : 1,
                                     // change color on hover
                                     '&:hover': {
-                                        color: 'black',
+                                        color: '#FCB976',
                                         backgroundColor: 'transparent',
                                     },
                                 }}
