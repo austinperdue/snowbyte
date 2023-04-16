@@ -72,7 +72,7 @@ export default function Home() {
                                 fontFamily: 'Russo One, sans-serif'
                             }}
                         >
-                            23-24 season passes now available
+                            23-25 season passes now available
                         </Typography>
                         <br></br>
                         <Button
