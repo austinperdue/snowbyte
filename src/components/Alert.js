@@ -9,7 +9,7 @@ const AlertContainer = styled(Box)(({ theme }) => ({
   left: 0,
   right: 0,
   zIndex: theme.zIndex.appBar + 1,
-  backgroundColor: '#FECB2E',
+  backgroundColor: 'orange',
   textAlign: 'center',
   // temporary fix for alert bar covering navbar
   height: '48px'
@@ -22,7 +22,7 @@ const AlertText = styled(Typography)(({ theme }) => ({
   display: 'inline',
   fontSize: '0.875rem',
   // move text down a bit
-  marginTop: theme.spacing(0.5),
+  marginTop: theme.spacing(0.5)
 }));
 
 const Alert = () => {
