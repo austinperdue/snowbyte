@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 
 // material ui imports
-import { Container, Toolbar, Typography, Box, IconButton, Menu, MenuItem, Popover, MenuList, ListItem, ListItemText } from '@mui/material';
+import { Container, Toolbar, Typography, Box, IconButton, Menu, MenuItem, Popover, MenuList, ListItem, ListItemText} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 
 import Button from '@mui/material/Button';
 import { AppBar } from '@mui/material';
 import AcUnitRoundedIcon from '@mui/icons-material/AcUnitRounded';
+import Alert from './Alert';
 
 // pages for navbar
 const pages = ['Home', 'Explore', 'Stay', 'Dine', 'Faq'];
@@ -43,11 +44,15 @@ export default function Navbar() {
     };
 
     return (
+        <>
+        <Alert />
         <AppBar
             position="fixed"
             elevation={2}
             sx={{
                 backgroundColor: 'white',
+                // temporary fix for alert bar covering navbar, can remove later
+                top: '48px'
             }}
         >
             <Container maxWidth="xl">
@@ -211,6 +216,7 @@ export default function Navbar() {
                 </Toolbar>
             </Container>
         </AppBar>
+        </>
     )
 
 }
