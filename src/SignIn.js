@@ -8,7 +8,7 @@ function SignIn() {
         try {
             // Handle form submission here
             // call an API to authenticate the user:
-            const response = await fetch('http://localhost:5000/api/auth/signin', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/signin`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',

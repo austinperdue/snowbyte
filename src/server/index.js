@@ -24,12 +24,35 @@ console.log('Connected to the MySQL database');
 app.post('/api/auth/signin', async (req, res) => {
   const { email, password } = req.body;
 
-  // Implement your authentication logic here, for example:
-  // 1. Query the database for a user with the provided email
-  // 2. Verify the provided password against the stored password
-  // 3. Return a success response with user data or an error message
+  try {
+    // 1. Query the database for a user with the provided email
+    const [userRows] = await db.execute('SELECT * FROM users WHERE email_address = ?', [email]);
 
-  res.status(200).json({ message: 'Login successful' });
+    if (userRows.length === 0) {
+      return res.status(400).json({ message: 'Invalid email or password' });
+    }
+
+    const user = userRows[0];
+
+    // 2. Verify the provided password against the stored password
+    const passwordMatch = bcrypt.compareSync(password, user.password);
+
+    if (!passwordMatch) {
+      return res.status(400).json({ message: 'Invalid email or password' });
+    }
+
+    // 3. Return a success response with user data or an error message
+    res.status(200).json({
+      message: 'Login successful',
+      guest_id: user.guest_id,
+      firstName: user.first_name,
+      lastName: user.last_name,
+      email: user.email_address,
+    });
+  } catch (error) {
+    console.error('Error during login:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
 const PORT = process.env.PORT || 5000;

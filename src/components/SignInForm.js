@@ -26,7 +26,7 @@ const signInSchema = yup.object().shape({
         .required('Password is required'),
 });
 
-function SignInForm({ onSubmit }) {
+function SignInForm({ onSubmit, setLoggedIn}) {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(signInSchema),
     });
