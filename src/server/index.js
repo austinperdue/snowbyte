@@ -9,10 +9,11 @@ app.use(express.json());
 
 // MySQL database connection
 const db = mysql.createConnection({
-  host: 'localhost', // Replace with your MySQL host
-  user: 'root', // Replace with your MySQL user
-  password: 'your_password', // Replace with your MySQL password
-  database: 'your_database', // Replace with your MySQL database name
+  host: 'snowbyte-db-do-user-13916321-0.b.db.ondigitalocean.com', 
+  user: 'doadmin', 
+  password: 'AVNS_Cu0RIaivJmdP8HEI64E',
+  database: 'defaultdb', 
+  port: 25060, 
 });
 
 db.connect((error) => {
@@ -35,7 +36,7 @@ app.post('/api/auth/signin', async (req, res) => {
   res.status(200).json({ message: 'Login successful' });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 25060;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
