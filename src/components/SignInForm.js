@@ -72,6 +72,8 @@ function SignInForm({ onSubmit }) {
                         fullWidth
                         label="Email address"
                         {...register('email')}
+                        error={!!errors.email}
+                        helperText={errors.email?.message}
                     />
                     <TextField
                         variant="outlined"
@@ -80,6 +82,8 @@ function SignInForm({ onSubmit }) {
                         label="Password"
                         type="password"
                         {...register('password')}
+                        error={!!errors.password}
+                        helperText={errors.password?.message}
                     />
                     <FormControlLabel
                         control={<Checkbox color="primary" />}
@@ -99,11 +103,11 @@ function SignInForm({ onSubmit }) {
                         }
                         sx={{ mt: 1 }}
                     />
-                    
+
                     <Grid item align="center">
-                            <Button 
-                            type="submit" 
-                            variant="contained" 
+                        <Button
+                            type="submit"
+                            variant="contained"
                             color="primary"
                             sx={{
                                 fontFamily: 'Russo One, sans-serif',
@@ -112,29 +116,29 @@ function SignInForm({ onSubmit }) {
                                 mb: 0,
                                 width: '100%',
                             }}
-                            >
-                                Log In
-                            </Button>
-                        </Grid>
+                        >
+                            Log In
+                        </Button>
+                    </Grid>
                     <Grid container justifyContent="center" alignItems="center" sx={{ mt: 2 }}>
                         <Grid item>
-                            <Link to="/forgot-password" 
-                            style={{ 
-                                textDecoration: 'none',
-                                fontFamily: 'Bitter, serif',
+                            <Link to="/forgot-password"
+                                style={{
+                                    textDecoration: 'none',
+                                    fontFamily: 'Bitter, serif',
                                 }}>
                                 Forgot password?
                             </Link>
                         </Grid>
-                        
+
                     </Grid>
                     <Grid container justifyContent="center" sx={{ mt: 5 }}>
                         <Grid item>
                             <Link to="/signup" style={{ textDecoration: 'none' }}>
-                                <Typography 
-                                variant="body2" 
-                                color="primary"
-                                fontFamily={'Bitter, serif'}
+                                <Typography
+                                    variant="body2"
+                                    color="primary"
+                                    fontFamily={'Bitter, serif'}
                                 >
                                     New to Snowbyte? Join now
                                 </Typography>

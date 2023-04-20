@@ -1,6 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import {
     Container,
     Box,
@@ -15,8 +17,28 @@ import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import DatePicker from '@mui/lab/DatePicker';
 
+// using YUP as a schema validator for form fields (react-hook-form)
+const signUpSchema = yup.object().shape({
+    firstName: yup
+        .string()
+        .required('First name is required'),
+    lastName: yup
+        .string()
+        .required('Last name is required'),
+    email: yup
+        .string()
+        .email('Invalid email address')
+        .required('Email is required'),
+    password: yup
+        .string()
+        .min(8, 'Password must be at least 8 characters')
+        .required('Password is required'),
+});
+
 function SignUpForm({ onSubmit }) {
-    const { register, handleSubmit, setValue } = useForm();
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm({
+        resolver: yupResolver(signUpSchema),
+    });
 
     const [selectedDate, setSelectedDate] = React.useState(new Date());
 
@@ -68,6 +90,8 @@ function SignUpForm({ onSubmit }) {
                                 fullWidth
                                 label="First Name"
                                 {...register('firstName')}
+                                error={!!errors.firstName}
+                                helperText={errors.firstName?.message}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -77,6 +101,8 @@ function SignUpForm({ onSubmit }) {
                                 fullWidth
                                 label="Last Name"
                                 {...register('lastName')}
+                                error={!!errors.lastName}
+                                helperText={errors.lastName?.message}
                             />
                         </Grid>
                     </Grid>
@@ -86,6 +112,8 @@ function SignUpForm({ onSubmit }) {
                         fullWidth
                         label="Email address"
                         {...register('email')}
+                        error={!!errors.email}
+                        helperText={errors.email?.message}
                     />
                     <TextField
                         variant="outlined"
@@ -94,6 +122,8 @@ function SignUpForm({ onSubmit }) {
                         label="Password"
                         type="password"
                         {...register('password')}
+                        error={!!errors.password}
+                        helperText={errors.password?.message}
                     />
 
                     <Grid item align="center">

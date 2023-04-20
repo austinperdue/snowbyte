@@ -7,7 +7,7 @@ function SignIn() {
     const onSubmit = async (data) => {
         try {
             // Handle form submission here
-            // For example, call an API to authenticate the user:
+            // call an API to authenticate the user:
             const response = await fetch('http://localhost:5000/api/auth/signin', {
                 method: 'POST',
                 headers: {
