@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 
 // material ui imports
-import { Container, Toolbar, Typography, Box, IconButton, Menu, MenuItem, Popover, MenuList, ListItem, ListItemText} from '@mui/material';
+import { Avatar, Tooltip, Container, Toolbar, Typography, Box, IconButton, Menu, MenuItem, Popover, MenuList, ListItem, ListItemText} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 
@@ -10,11 +10,12 @@ import Button from '@mui/material/Button';
 import { AppBar } from '@mui/material';
 import AcUnitRoundedIcon from '@mui/icons-material/AcUnitRounded';
 import Alert from './Alert';
+import FAQ from '../FAQ';
 
 // pages for navbar
 const pages = ['Home', 'Explore', 'Stay', 'Dine', 'Faq'];
 // settings for user account
-const settings = ['Account', 'Logout'];
+const settings = ['Login', 'Logout'];
 // controls spacing between links
 let link_spacing = 0;
 
@@ -25,7 +26,13 @@ export default function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+    // state variable checking if user is logged in
+    const [loggedIn, setLoggedIn] = React.useState(false);
 
+    // function to toggle login
+    const toggleLogin = () => {
+        setLoggedIn(!loggedIn);
+    };
 
 
     const handleOpenNavMenu = (event) => {
@@ -181,40 +188,33 @@ export default function Navbar() {
                     </Box>
 
 
-                    {/* will add sign in button here */}
-
-                    {/* Avatar box */}
-                    {/* <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box> */}
+                {/* sign in button */}
+                <Button
+                    component={Link}
+                    //to={loggedIn ? '/logout' : '/signin'}
+                    //onClick={toggleLogin}
+                    // use setting to toggle login
+                    to={'SignIn'}
+                    variant="outlined"
+                    sx={{
+                        fontFamily: 'Russo One, sans-serif',
+                        color: 'black',
+                        borderColor: 'black',
+                        borderWidth: '2px',
+                        '&:hover': {
+                            backgroundColor: 'black',
+                            color: 'white',
+                        },
+                    }}
+                >
+                    {loggedIn ? 'Log Out' : 'Sign In'}
+                </Button>
+                
                 </Toolbar>
+
+
             </Container>
+
         </AppBar>
         </>
     )
