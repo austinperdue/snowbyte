@@ -6,16 +6,29 @@ const bcrypt = require('bcrypt'); // for password hashing
 
 const app = express();
 
+
+const dotenv = require('dotenv');
+
+// for development, load variables from .env.development
+// for production, load variables from .env.production
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config({ path: '.env.production' });
+  console.log('Loaded production environment variables: ', process.env);
+} else {
+  dotenv.config({ path: '.env.development' });
+  console.log('Loaded development environment variables: ', process.env);
+}
+
 app.use(cors());
 app.use(express.json());
 
 // MySQL database connection
 const db = mysql.createPool({
-  host: 'snowbyte-db-do-user-13916321-0.b.db.ondigitalocean.com', 
-  user: 'doadmin', 
-  password: 'AVNS_Cu0RIaivJmdP8HEI64E',
-  database: 'defaultdb', 
-  port: 25060, 
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
 });
 
 console.log('Connected to the MySQL database');
@@ -23,6 +36,7 @@ console.log('Connected to the MySQL database');
 // API endpoint for user login
 app.post('/api/auth/signin', async (req, res) => {
   const { email, password } = req.body;
+
 
   try {
     // 1. Query the database for a user with the provided email
