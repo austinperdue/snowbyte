@@ -35,6 +35,8 @@ console.log('Connected to the MySQL database');
 
 // API endpoint for user login
 app.post('/api/auth/signin', async (req, res) => {
+  console.log('Someone is trying to log in!');
+  console.log('req.body:', req.body); // debug
   const { email, password } = req.body;
 
 
