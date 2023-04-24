@@ -2,7 +2,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import SignIn from '../SignIn';
+import ForgotPass from '../ForgotPass';
+import { useState } from 'react';
+import MenuItem from '@mui/material/MenuItem';
 import * as yup from 'yup';
 import {
     Container,
@@ -27,10 +29,23 @@ const signInSchema = yup.object().shape({
         .required('Password is required'),
 });
 
-function SignInForm({ onSubmit, errorMessage }) {
+function ForgotPassForm({ onSubmit, errorMessage }) {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(signInSchema),
     });
+
+    const [securityQuestions] = useState([
+        'What was the name of your first pet?',
+        'What was the name of the first school you attended?',
+        'What is the name of your favorite book?',
+        'What was your childhood nickname?',
+        'What is your mother\'s maiden name?',
+        'In what city were you born?',
+        'What is your favorite color?',
+        'What is the name of your favorite movie?',
+        'What is your father\'s middle name?',
+        'What was the make and model of your first car?',
+    ])
     
 
 
@@ -55,7 +70,7 @@ function SignInForm({ onSubmit, errorMessage }) {
                     fontFamily={'Russo One, sans-serif'}
                     align={'left'}
                 >
-                    Sign In
+                    Forgot your password?
                 </Typography>
                 <Typography
                     variant="subtitle2"
@@ -66,9 +81,9 @@ function SignInForm({ onSubmit, errorMessage }) {
                         mb: 2
                     }}
                 >
-                    Relax. Explore. Discover.
+                    Not a problem.
                 </Typography>
-                                {/* Add this Typography component to display the error message */}
+                {/* Typography component to display the error message */}
                                 {errorMessage && (
                     <Typography
                         variant="body2"
@@ -95,11 +110,43 @@ function SignInForm({ onSubmit, errorMessage }) {
                             style: errorMessage ? { borderColor: 'red' } : {},
                         }}
                     />
+
+                    
+                    <TextField
+                        select
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
+                        label="Security Question"
+                        {...register('securityQuestion')}
+                        defaultValue={securityQuestions[0]}
+                        error={!!errors.securityQuestion}
+                        helperText={errors.securityQuestion?.message}
+                    >
+                        {securityQuestions.map((question, index) => (
+                            <MenuItem key={index} value={question}>
+                                {question}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+
+                                        <TextField
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
+                        label="Security Answer"
+                        {...register('securityAnswer')}
+                        error={!!errors.securityAnswer}
+                        helperText={errors.securityAnswer?.message}
+                    />
+
+
+
                     <TextField
                         variant="outlined"
                         margin="normal"
                         fullWidth
-                        label="Password"
+                        label="New password"
                         type="password"
                         {...register('password')}
 
@@ -111,24 +158,6 @@ function SignInForm({ onSubmit, errorMessage }) {
                         InputProps={{
                             style: errorMessage ? { borderColor: 'red' } : {},
                         }}
-                    />
-                    <FormControlLabel
-                        control={<Checkbox color="primary" />}
-                        label={
-                            <Typography
-                                variant="h2"
-                                color={'text.secondary'}
-                                sx={{
-                                    fontFamily: 'Russo One, serif',
-                                    fontSize: '0.80rem',
-                                    color: 'black',
-                                    mt: 0.5,
-                                }}
-                            >
-                                Keep me signed in
-                            </Typography>
-                        }
-                        sx={{ mt: 1 }}
                     />
 
                     <Grid item align="center">
@@ -146,22 +175,11 @@ function SignInForm({ onSubmit, errorMessage }) {
                                 '&:hover': {
                                     bgcolor: 'orange',
                                 },
+
                             }}
                         >
-                            Log In
+                            RESET PASSWORD
                         </Button>
-                    </Grid>
-                    <Grid container justifyContent="center" alignItems="center" sx={{ mt: 2 }}>
-                        <Grid item>
-                            <Link to="/forgotPass"
-                                style={{
-                                    textDecoration: 'none',
-                                    fontFamily: 'Bitter, serif',
-                                }}>
-                                Forgot password?
-                            </Link>
-                        </Grid>
-
                     </Grid>
                     <Grid container justifyContent="center" sx={{ mt: 5 }}>
                         <Grid item>
@@ -182,4 +200,4 @@ function SignInForm({ onSubmit, errorMessage }) {
     );
 }
 
-export default SignInForm;
+export default ForgotPassForm;

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import SignInForm from './components/SignInForm';
+import ForgotPassForm from './components/ForgotPassForm';
 import { useNavigate } from 'react-router-dom';
 
-function SignIn() {
+function ForgotPass() {
     
     // user state for error message when login fails
     const [errorMessage, setErrorMessage] = useState(null);
@@ -16,7 +16,7 @@ function SignIn() {
             // Handle form submission here
             // call an API to authenticate the user:
             console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL); // Add this line
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/signin`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/reset-password`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -27,31 +27,31 @@ function SignIn() {
             const result = await response.json();
             if (response.ok) {
                 // Login successful, handle user login (e.g., set user data in context, navigate to the dashboard, etc.)
-                console.log('Login successful:', result);
+                console.log('Password reset successful:', result);
 
-                // redirect to user dashboard
-                navigate('/dashboard');
+                // redirect to user sign in page
+                navigate('/signin');
 
                 
             } else {
                 // Show an error message
-                console.error('Login failed:', result.message);
-                setErrorMessage('Invalid email or password');
+                console.error('Password reset failed:', result.message);
+                setErrorMessage('Invalid security answer');
             }
         } catch (error) {
             // Show an error message
-            console.error('Error during login:', error);
-            setErrorMessage('An error occurred during login');
+            console.error('Error during reset:', error);
+            setErrorMessage('An error occurred');
         }
     };
 
     return (
         <div style={{ display: 'flex', minHeight: '75vh', flexDirection: 'column' }}>
             <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <SignInForm onSubmit={onSubmit} errorMessage={errorMessage} />
+                <ForgotPassForm onSubmit={onSubmit} errorMessage={errorMessage} />
             </div>
         </div>
     );
 }
 
-export default SignIn;
+export default ForgotPass;

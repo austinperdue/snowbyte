@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import MenuItem from '@mui/material/MenuItem';
 import {
     Container,
     Box,
@@ -33,9 +35,15 @@ const signUpSchema = yup.object().shape({
         .string()
         .min(8, 'Password must be at least 8 characters')
         .required('Password is required'),
+    securityQuestion: yup
+        .string()
+        .required('Security question is required'),
+    securityAnswer: yup
+        .string()
+        .required('Security answer is required')
 });
 
-function SignUpForm({ onSubmit }) {
+function SignUpForm({ onSubmit, errorMessage }) {
     const { register, handleSubmit, setValue, formState: { errors } } = useForm({
         resolver: yupResolver(signUpSchema),
     });
@@ -46,6 +54,19 @@ function SignUpForm({ onSubmit }) {
         setSelectedDate(date);
         setValue('dateOfBirth', date);
     };
+
+    const [securityQuestions] = useState([
+        'What was the name of your first pet?',
+        'What was the name of the first school you attended?',
+        'What is the name of your favorite book?',
+        'What was your childhood nickname?',
+        'What is your mother\'s maiden name?',
+        'In what city were you born?',
+        'What is your favorite color?',
+        'What is the name of your favorite movie?',
+        'What is your father\'s middle name?',
+        'What was the make and model of your first car?',
+    ]);
 
     return (
         <Container maxWidth="xs">
@@ -81,6 +102,16 @@ function SignUpForm({ onSubmit }) {
                 >
                     Create your Snowbyte account
                 </Typography>
+                {/* Add this Typography component to display the error message */}
+                {errorMessage && (
+                    <Typography
+                        variant="body2"
+                        color="error"
+                        sx={{ mb: 2 }}
+                    >
+                        {errorMessage}
+                    </Typography>
+                )}
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
@@ -112,8 +143,14 @@ function SignUpForm({ onSubmit }) {
                         fullWidth
                         label="Email address"
                         {...register('email')}
-                        error={!!errors.email}
+                        error={!!errors.email || !!errorMessage}
                         helperText={errors.email?.message}
+                        InputLabelProps={{
+                            style: errorMessage ? { color: 'red' } : {},
+                        }}
+                        InputProps={{
+                            style: errorMessage ? { borderColor: 'red' } : {},
+                        }}
                     />
                     <TextField
                         variant="outlined"
@@ -122,8 +159,41 @@ function SignUpForm({ onSubmit }) {
                         label="Password"
                         type="password"
                         {...register('password')}
-                        error={!!errors.password}
+                        error={!!errors.password || !!errorMessage}
                         helperText={errors.password?.message}
+                        InputLabelProps={{
+                            style: errorMessage ? { color: 'red' } : {},
+                        }}
+                        InputProps={{
+                            style: errorMessage ? { borderColor: 'red' } : {},
+                        }}
+                    />
+
+                    <TextField
+                        select
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
+                        label="Security Question"
+                        {...register('securityQuestion')}
+                        defaultValue={securityQuestions[0]}
+                        error={!!errors.securityQuestion}
+                        helperText={errors.securityQuestion?.message}
+                    >
+                        {securityQuestions.map((question, index) => (
+                            <MenuItem key={index} value={question}>
+                                {question}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
+                        label="Security Answer"
+                        {...register('securityAnswer')}
+                        error={!!errors.securityAnswer}
+                        helperText={errors.securityAnswer?.message}
                     />
 
                     <Grid item align="center">
@@ -137,6 +207,10 @@ function SignUpForm({ onSubmit }) {
                                 mt: 2,
                                 mb: 0,
                                 width: '100%',
+                                bgcolor: 'darkorange',
+                                '&:hover': {
+                                    bgcolor: 'orange',
+                                },
                             }}
                         >
                             Sign Up

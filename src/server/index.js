@@ -11,6 +11,8 @@ const dotenv = require('dotenv');
 
 // for development, load variables from .env.development
 // for production, load variables from .env.production
+// I don't think Digital Ocean is actually pulling the .env.production file
+// anyway, so I'm just going to use the .env.development file for now
 if (process.env.NODE_ENV === 'production') {
   dotenv.config({ path: '.env.production' });
   console.log('Loaded production environment variables: ', process.env);
@@ -36,7 +38,7 @@ console.log('Connected to the MySQL database');
 // API endpoint for user login
 app.post('/api/auth/signin', async (req, res) => {
   console.log('Someone is trying to log in!');
-  console.log('req.body:', req.body); // debug
+  //console.log('req.body:', req.body); // debug
   const { email, password } = req.body;
 
 
@@ -78,10 +80,11 @@ app.listen(PORT, () => {
 
 // auth for signup
 app.post('/api/auth/signup', async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password, securityQuestion, securityAnswer } = req.body;
 
-  // Generate a random guest_id
-  const guest_id = crypto.randomBytes(16).toString('hex');
+  // Generate a random guest_id prefixed by 'G' and 7 random numbers
+  const guest_id = 'G' + crypto.randomInt(10000000, 99999999);
+
 
   // Check if the email address already exists in the database
   const checkEmailQuery = 'SELECT * FROM users WHERE email_address = ?';
@@ -96,8 +99,42 @@ app.post('/api/auth/signup', async (req, res) => {
   const hashedPassword = bcrypt.hashSync(password, salt);
 
   // Insert the new user into the database
-  const insertUserQuery = 'INSERT INTO users (guest_id, first_name, last_name, email_address, password) VALUES (?, ?, ?, ?, ?)';
-  await db.execute(insertUserQuery, [guest_id, firstName, lastName, email, hashedPassword]);
+  const insertUserQuery = 'INSERT INTO users (guest_id, first_name, last_name, email_address, password, securityQuestion, securityAnswer) VALUES (?, ?, ?, ?, ?, ?, ?)';
+  await db.execute(insertUserQuery, [guest_id, firstName, lastName, email, hashedPassword, securityQuestion, securityAnswer]);
 
   res.status(201).json({ message: 'User created successfully', guest_id });
+});
+
+
+// auth for reset password
+app.post('/api/auth/reset-password', async (req, res) => {
+  const { email, securityQuestion, securityAnswer, password } = req.body;
+
+  try {
+    // Get user information based on the email address
+    const [userRows] = await db.execute('SELECT * FROM users WHERE email_address = ?', [email]);
+
+    if (userRows.length === 0) {
+      return res.status(400).json({ message: 'User not found' });
+    }
+
+    const user = userRows[0];
+
+    // Verify security question and answer
+    if (user.securityQuestion !== securityQuestion || user.securityAnswer !== securityAnswer) {
+      return res.status(400).json({ message: 'Invalid security question or answer' });
+    }
+
+    // Hash the new password
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(password, salt);
+
+    // Update the user's password in the database
+    await db.execute('UPDATE users SET password = ? WHERE email_address = ?', [hashedPassword, email]);
+
+    res.status(200).json({ message: 'Password reset successful' });
+  } catch (error) {
+    console.error('Error during password reset:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
