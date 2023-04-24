@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import SignInForm from './components/SignInForm';
 import { useNavigate } from 'react-router-dom';
 
-function SignIn() {
+function SignIn( {onAuthentication} ) {
     
     // user state for error message when login fails
     const [errorMessage, setErrorMessage] = useState(null);
@@ -28,6 +28,12 @@ function SignIn() {
             if (response.ok) {
                 // Login successful, handle user login (e.g., set user data in context, navigate to the dashboard, etc.)
                 console.log('Login successful:', result);
+
+                // create token for user authentication
+                localStorage.setItem('token', result.token);
+
+                // set user authentication
+                onAuthentication(true);
 
                 // redirect to user dashboard
                 navigate('/dashboard');

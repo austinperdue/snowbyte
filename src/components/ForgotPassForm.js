@@ -175,7 +175,6 @@ function ForgotPassForm({ onSubmit, errorMessage }) {
                                 '&:hover': {
                                     bgcolor: 'orange',
                                 },
-
                             }}
                         >
                             RESET PASSWORD

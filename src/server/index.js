@@ -3,6 +3,7 @@ const mysql = require('mysql2/promise');
 const cors = require('cors');
 const crypto = require('crypto'); // for random string generation
 const bcrypt = require('bcrypt'); // for password hashing
+const jwt = require('jsonwebtoken'); // for JWTs, user authentication
 
 const app = express();
 
@@ -59,13 +60,26 @@ app.post('/api/auth/signin', async (req, res) => {
       return res.status(400).json({ message: 'Invalid email or password' });
     }
 
-    // 3. Return a success response with user data or an error message
+    // 3. Generate a JWT token
+    const token = jwt.sign(
+      {
+        guest_id: user.guest_id,
+        firstName: user.first_name,
+        lastName: user.last_name,
+        email: user.email_address,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '600s' } // token expires in 10 minutes (600 seconds)
+    );
+
+    // 4. Return a success response with user data or an error message
     res.status(200).json({
       message: 'Login successful',
       guest_id: user.guest_id,
       firstName: user.first_name,
       lastName: user.last_name,
       email: user.email_address,
+      token,
     });
   } catch (error) {
     console.error('Error during login:', error);
