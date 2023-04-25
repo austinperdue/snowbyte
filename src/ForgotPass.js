@@ -14,8 +14,8 @@ function ForgotPass() {
     const onSubmit = async (data) => {
         try {
             // Handle form submission here
-            // call an API to authenticate the user:
-            console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL); // Add this line
+            // call API to authenticate the user:
+            console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL); // debug
             const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/reset-password`, {
                 method: 'POST',
                 headers: {

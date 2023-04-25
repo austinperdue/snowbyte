@@ -46,7 +46,7 @@ function ForgotPassForm({ onSubmit, errorMessage }) {
         'What is your father\'s middle name?',
         'What was the make and model of your first car?',
     ])
-    
+
 
 
     return (
@@ -84,7 +84,7 @@ function ForgotPassForm({ onSubmit, errorMessage }) {
                     Not a problem.
                 </Typography>
                 {/* Typography component to display the error message */}
-                                {errorMessage && (
+                {errorMessage && (
                     <Typography
                         variant="body2"
                         color="error"
@@ -101,17 +101,14 @@ function ForgotPassForm({ onSubmit, errorMessage }) {
                         label="Email address"
                         {...register('email')}
 
-                        error={!!errors.email || !!errorMessage}
+                        error={!!errors.email}
                         helperText={errors.email?.message}
-                        InputLabelProps={{
-                            style: errorMessage ? { color: 'red' } : {},
-                        }}
                         InputProps={{
                             style: errorMessage ? { borderColor: 'red' } : {},
                         }}
                     />
 
-                    
+
                     <TextField
                         select
                         variant="outlined"
@@ -120,7 +117,7 @@ function ForgotPassForm({ onSubmit, errorMessage }) {
                         label="Security Question"
                         {...register('securityQuestion')}
                         defaultValue={securityQuestions[0]}
-                        error={!!errors.securityQuestion}
+                        error={!!errors.securityQuestion || !!errorMessage}
                         helperText={errors.securityQuestion?.message}
                     >
                         {securityQuestions.map((question, index) => (
@@ -130,13 +127,13 @@ function ForgotPassForm({ onSubmit, errorMessage }) {
                         ))}
                     </TextField>
 
-                                        <TextField
+                    <TextField
                         variant="outlined"
                         margin="normal"
                         fullWidth
                         label="Security Answer"
                         {...register('securityAnswer')}
-                        error={!!errors.securityAnswer}
+                        error={!!errors.securityAnswer || !!errorMessage}
                         helperText={errors.securityAnswer?.message}
                     />
 
@@ -150,11 +147,8 @@ function ForgotPassForm({ onSubmit, errorMessage }) {
                         type="password"
                         {...register('password')}
 
-                        error={!!errors.password || !!errorMessage}
+                        error={!!errors.password}
                         helperText={errors.password?.message}
-                        InputLabelProps={{
-                            style: errorMessage ? { color: 'red' } : {},
-                        }}
                         InputProps={{
                             style: errorMessage ? { borderColor: 'red' } : {},
                         }}

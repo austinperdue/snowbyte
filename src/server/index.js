@@ -6,8 +6,6 @@ const bcrypt = require('bcrypt'); // for password hashing
 const jwt = require('jsonwebtoken'); // for JWTs, user authentication
 
 const app = express();
-
-
 const dotenv = require('dotenv');
 
 // for development, load variables from .env.development
