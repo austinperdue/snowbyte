@@ -94,12 +94,12 @@ export default function FAQ() {
                             fontFamily: 'Russo One, sans-serif',
                             color: 'black',
                             // white to orange lienar gradient
-                            backgroundImage: 'linear-gradient(90deg, black 50%, #ff8c00 75%)',
+                            backgroundImage: 'linear-gradient(90deg, black 15%, #ff8c00 55%)',
                             // clip text to background image
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                         }}>
-                        24/7 support, just for you
+                        24/7 Customer Service
                     </Typography>
                 </Box>
             </Box>

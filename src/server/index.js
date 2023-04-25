@@ -45,7 +45,7 @@ app.post('/api/auth/signin', async (req, res) => {
 
   try {
     // 1. Query the database for a user with the provided email
-    const [userRows] = await db.execute('SELECT * FROM users WHERE email_address = ?', [email]);
+    const [userRows] = await db.execute('SELECT * FROM guests WHERE email_address = ?', [email]);
 
     if (userRows.length === 0) {
       return res.status(400).json({ message: 'Invalid email or password' });
@@ -101,7 +101,7 @@ app.post('/api/auth/signup', async (req, res) => {
 
 
   // Check if the email address already exists in the database
-  const checkEmailQuery = 'SELECT * FROM users WHERE email_address = ?';
+  const checkEmailQuery = 'SELECT * FROM guests WHERE email_address = ?';
   const [emailRows] = await db.execute(checkEmailQuery, [email]);
 
   if (emailRows.length > 0) {
@@ -113,7 +113,7 @@ app.post('/api/auth/signup', async (req, res) => {
   const hashedPassword = bcrypt.hashSync(password, salt);
 
   // Insert the new user into the database
-  const insertUserQuery = 'INSERT INTO users (guest_id, first_name, last_name, email_address, password, securityQuestion, securityAnswer) VALUES (?, ?, ?, ?, ?, ?, ?)';
+  const insertUserQuery = 'INSERT INTO guests (guest_id, first_name, last_name, email_address, password, securityQuestion, securityAnswer) VALUES (?, ?, ?, ?, ?, ?, ?)';
   await db.execute(insertUserQuery, [guest_id, firstName, lastName, email, hashedPassword, securityQuestion, securityAnswer]);
 
   res.status(201).json({ message: 'User created successfully', guest_id });
@@ -126,7 +126,7 @@ app.post('/api/auth/reset-password', async (req, res) => {
 
   try {
     // Get user information based on the email address
-    const [userRows] = await db.execute('SELECT * FROM users WHERE email_address = ?', [email]);
+    const [userRows] = await db.execute('SELECT * FROM guests WHERE email_address = ?', [email]);
 
     if (userRows.length === 0) {
       return res.status(400).json({ message: 'User not found' });
@@ -144,7 +144,7 @@ app.post('/api/auth/reset-password', async (req, res) => {
     const hashedPassword = bcrypt.hashSync(password, salt);
 
     // Update the user's password in the database
-    await db.execute('UPDATE users SET password = ? WHERE email_address = ?', [hashedPassword, email]);
+    await db.execute('UPDATE guests SET password = ? WHERE email_address = ?', [hashedPassword, email]);
 
     res.status(200).json({ message: 'Password reset successful' });
   } catch (error) {
