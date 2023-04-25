@@ -149,8 +149,10 @@ export default function FAQ() {
                                 },
                                 '&.Mui-expanded': {
                                     margin: 'auto',
-                                    border: '4px solid darkorange',
-                                    borderRadius: 2,
+                                    // make border only left side
+                                    borderLeft: '4px solid darkorange',
+
+                                
                                 },
                                 '&.MuiAccordion-root': {
                                     marginBottom: 2,
@@ -172,7 +174,7 @@ export default function FAQ() {
                             </AccordionSummary>
                             <AccordionDetails
                                 sx={{
-                                    backgroundColor: '#d9d4d4',
+                                    backgroundColor: '#e6e3e3',
                                     color: 'black',
                                     borderRadius: '0 0 4px 4px',
                                     '&.Mui-expanded': {
