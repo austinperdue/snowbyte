@@ -3,6 +3,8 @@ import React from 'react';
 import { Box, Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import zIndex from '@mui/material/styles/zIndex';
+import faqHeaderImage from './images/clouds.jpg';
 
 const faqs = [
     { question: 'How do I purchase lift tickets?', answer: 'You can purchase lift tickets online through our website or at the ticket window on-site.' },
@@ -27,102 +29,196 @@ const faqs = [
 
 export default function FAQ() {
     return (
-        <Box sx={{ flexGrow: 1, padding: 4, textAlign: 'center' }}>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <Typography
-                variant="h3"
-                sx={{ fontFamily: 'Russo One, sans-serif', marginBottom: 4 }}
-            >
-                FREQUENTLY ASKED QUESTIONS
-            </Typography>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <Box sx={{ textAlign: 'left', maxWidth: '80%', margin: '0 auto' }}>
-                {faqs.map((faq, index) => (
-                    <Accordion
-                        key={index}
+        <div
+            style={{
+                display: 'flex',
+                minHeight: '75vh',
+                flexDirection: 'column',
+                paddingTop: '10em',
+                paddingBottom: '2em',
+            }}>
+
+            {/* Responsive container for the image and text */}
+            <Box
+                sx={{
+                    position: 'relative',
+                    width: '100%',
+                    minHeight: '25vh',
+                    overflow: 'hidden',
+                    marginTop: '4em',
+                    marginBottom: '4em',
+                }}>
+                {/* Background image */}
+                <Box
+                    component="img"
+                    src={faqHeaderImage}
+                    alt="FAQ header image"
+                    sx={{
+                        width: '100%',
+                        height: '150%',
+                        objectFit: 'cover',
+                        objectPosition: 'center', // default object position
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        zIndex: -1,
+                        '@media (min-width: 600px)': {
+                            // larger desktop screens, allows to scale image
+                            objectPosition: '50% 50%',
+                        },
+                    }}
+                />
+                {/* Text overlay */}
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        textAlign: 'center',
+
+
+
+
+
+                    }}>
+                    <Typography
+                        variant="h4"
                         sx={{
-                            backgroundColor: '#f5f5f5',
-                            border: '1px solid #e0e0e0',
-                            boxShadow: 'none',
-                            '&:before': {
-                                display: 'none'
+                            fontSize: {
+                                sm: '2.5em',
+                                md: '2.5em',
+                                lg: '3.2em',
+
                             },
-                            '&.Mui-expanded': {
-                                margin: 'auto'
-                            },
-                            '&.MuiAccordion-root': {
-                                marginBottom: 2
-                            }
-                        }}
-                    >
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls={`faq-content-${index}`}
-                            id={`faq-header-${index}`}
-                        >
-                            <Typography
-                                sx={{
-                                    fontFamily: 'Russo One, sans-serif'
-                                }}
-                            >
-                                {faq.question}
-                            </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography
-                                sx={{
-                                    fontFamily: 'Bitter, serif',
-                                    fontSize: '1.1rem',
-                                    lineHeight: 1.5,
-                                    color: ''
-                                }}
-                            >
-                                {faq.answer}
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
-                ))}
+                            fontFamily: 'Russo One, sans-serif',
+                            color: 'black',
+                            // white to orange lienar gradient
+                            backgroundImage: 'linear-gradient(90deg, black 50%, #ff8c00 75%)',
+                            // clip text to background image
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                        }}>
+                        24/7 support, just for you
+                    </Typography>
+                </Box>
             </Box>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <Box 
-            
-            sx={{ 
-                textAlign: 'center', 
-                marginTop: 4,
-                display: { xs: 'block', sm: 'block'}
+
+            {/* accordions */}
+            <Box
+                sx={{
+                    flexGrow: 1,
+                    padding: 4,
+                    textAlign: 'center'
+
                 }}
-                >
+            >
+
                 <Typography
                     variant="h5"
-                    gutterBottom
-                    sx={{ fontFamily: 'Russo One, sans-serif' }}
-                >
-                    Can't find your question?
-                </Typography>
-                <br></br>
-                <Typography sx={{ fontFamily: 'Bitter, serif' }}>
-                    If you can't find the answer to your question in our FAQ, please feel free to contact our support team. We are always here to help and provide you with any information you need. You can reach us by phone, email, or through our online contact form.
-                </Typography>
-            </Box>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
+                    sx={{
+                        fontSize: {
+                            xs: '1em',
+                            sm: '1.3em',
+                            md: '1.5em',
+                            lg: '2em',
 
-        </Box>
+                        },
+                        fontFamily: 'Russo One, sans-serif',
+                        color: 'black',
+                        textAlign: 'center',
+                        paddingBottom: '2em',
+                        paddingTop: '2em',
+                    }}
+                >
+                    Frequently Asked Questions
+                </Typography>
+
+
+                <Box sx={{ textAlign: 'left', maxWidth: '80%', margin: '0 auto' }}>
+                    {faqs.map((faq, index) => (
+                        <Accordion
+                            key={index}
+                            sx={{
+                                backgroundColor: '#f5f5f5',
+                                border: '1px solid #e0e0e0',
+                                borderRadius: 2,
+                                boxShadow: 'none',
+                                '&:before': {
+                                    display: 'none'
+                                },
+                                '&.Mui-expanded': {
+                                    margin: 'auto',
+                                    border: '2px solid darkorange ',
+                                    // make border rounded
+                                    borderRadius: 2,
+
+
+                                },
+                                '&.MuiAccordion-root': {
+                                    marginBottom: 2,
+                                }
+                            }}
+                        >
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls={`faq-content-${index}`}
+                                id={`faq-header-${index}`}
+                            >
+                                <Typography
+                                    sx={{
+                                        fontFamily: 'Russo One, sans-serif'
+                                    }}
+                                >
+                                    {faq.question}
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography
+                                    sx={{
+                                        fontFamily: 'Bitter, serif',
+                                        fontSize: '1.1rem',
+                                        lineHeight: 1.5,
+                                        color: ''
+                                    }}
+                                >
+                                    {faq.answer}
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+                    ))}
+                </Box>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <Box
+
+                    sx={{
+                        textAlign: 'center',
+                        marginTop: 4,
+                        display: { xs: 'block', sm: 'block' }
+                    }}
+                >
+                    <Typography
+                        variant="h5"
+                        gutterBottom
+                        sx={{ fontFamily: 'Russo One, sans-serif' }}
+                    >
+                        Can't find your question?
+                    </Typography>
+                    <br></br>
+                    <Typography sx={{ fontFamily: 'Bitter, serif' }}>
+                        If you can't find the answer to your question in our FAQ, please feel free to contact our support team. We are always here to help and provide you with any information you need. You can reach us by phone, email, or through our online contact form.
+                    </Typography>
+                </Box>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+
+            </Box>
+        </div>
 
     );
 }

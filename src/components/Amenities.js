@@ -1,25 +1,28 @@
 // src/components/Amenities.js
 import React from 'react';
 import { Box, Grid, Typography, Button } from '@mui/material';
+import iceRinkImage from '../images/ice_rink.jpg';
+import tavernImage from '../images/bar_lounge.jpg';
+import poolImage from '../images/hot_springs.jpg';
 
 const amenities = [
   {
     title: 'Ice Rink',
     description:
       'Enjoy our state-of-the-art ice rink, perfect for a day of family fun or a romantic date night. We provide skate rentals and offer skating lessons for all ages and skill levels.',
-    image: './images/ice_rink.jpg',
+    image: iceRinkImage
   },
   {
     title: 'Talbot\'s Tavern',
     description:
       'Unwind at our cozy bar and lounge area after a day of adventure. Sample our carefully curated selection of local and international beverages, or enjoy a delicious meal prepared by our talented chefs.',
-    image: './images/bar_lounge.jpg',
+    image: tavernImage
   },
   {
     title: 'Hot Springs Pool',
     description:
       'Experience the largest hot springs pool in America! Immerse yourself in the soothing warm waters, surrounded by stunning mountain views. Perfect for relaxation and rejuvenation.',
-    image: './images/hot_springs.jpg',
+    image: poolImage
   },
 ];
 

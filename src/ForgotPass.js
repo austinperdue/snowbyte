@@ -46,7 +46,7 @@ function ForgotPass() {
     };
 
     return (
-        <div style={{ display: 'flex', minHeight: '75vh', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', minHeight: '75vh', flexDirection: 'column', paddingTop: '4em', paddingBottom: '4em' }}>
             <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <ForgotPassForm onSubmit={onSubmit} errorMessage={errorMessage} />
             </div>

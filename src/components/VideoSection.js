@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import mountainVideo from '../images/mountains.mp4';
 
 export default function VideoSection() {
     return (
@@ -13,7 +14,7 @@ export default function VideoSection() {
         >
             <Box
                 component="video"
-                src="./images/mountains.mp4"
+                src={mountainVideo}
                 title="Video"
                 autoPlay
                 muted

@@ -62,7 +62,7 @@ export default function Navbar({ isAuthenticated, handleLogout }) {
                 sx={{
                     backgroundColor: 'white',
                     // temporary fix for alert bar covering navbar, can remove later
-                    top: '48px'
+                    top: '48px',
                 }}
             >
                 <Container maxWidth="xl">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import jmuLogo from '../images/jmu_logo.png';
 
 export default function Partners() {
   return (
@@ -40,7 +41,7 @@ export default function Partners() {
           padding: 4,
         }}
       >
-        <Box component="img" src="./images/jmu_logo.png" alt="Partner Logo" sx={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
+        <Box component="img" src={ jmuLogo } alt="Partner Logo" sx={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
       </Box>
     </>
   );

@@ -4,6 +4,8 @@ import { Container, Box, Typography, Button, Grid } from '@mui/material';
 import VideoSection from './components/VideoSection';
 import Amenities from './components/Amenities';
 import Partners from './components/Partners';
+import homeImage from './images/home_image.jpg';
+
 
 
 
@@ -11,7 +13,7 @@ import Partners from './components/Partners';
 
 export default function Home() {
     return (
-        <div>
+        <div style={{ paddingTop: '4em' }}>
             <Box maxwidth="100%">
                 <Box
                     sx={{
@@ -26,7 +28,7 @@ export default function Home() {
                 >
                     <Box
                         component="img"
-                        src="./images/home_image.jpg"
+                        src={homeImage}
                         alt="home_image"
                         sx={{
                             width: '100%',
