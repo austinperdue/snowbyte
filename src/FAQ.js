@@ -145,19 +145,16 @@ export default function FAQ() {
                                 borderRadius: 2,
                                 boxShadow: 'none',
                                 '&:before': {
-                                    display: 'none'
+                                    display: 'none',
                                 },
                                 '&.Mui-expanded': {
                                     margin: 'auto',
-                                    border: '2px solid darkorange ',
-                                    // make border rounded
+                                    border: '4px solid darkorange',
                                     borderRadius: 2,
-
-
                                 },
                                 '&.MuiAccordion-root': {
                                     marginBottom: 2,
-                                }
+                                },
                             }}
                         >
                             <AccordionSummary
@@ -173,11 +170,22 @@ export default function FAQ() {
                                     {faq.question}
                                 </Typography>
                             </AccordionSummary>
-                            <AccordionDetails>
+                            <AccordionDetails
+                                sx={{
+                                    backgroundColor: '#d9d4d4',
+                                    color: 'black',
+                                    borderRadius: '0 0 4px 4px',
+                                    '&.Mui-expanded': {
+                                        backgroundColor: '#f5f5f5',
+                                        color: 'inherit',
+                                        borderRadius: 2,
+                                    },
+                                }}
+                            >
                                 <Typography
                                     sx={{
                                         fontFamily: 'Bitter, serif',
-                                        fontSize: '1.1rem',
+                                        fontSize: '1rem',
                                         lineHeight: 1.5,
                                         color: ''
                                     }}
