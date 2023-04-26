@@ -4,18 +4,17 @@ import dashboardHeader from "./images/ski.jpg";
 import { useAuth } from "./hooks/useAuth";
 import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
-// import avatar
-import Avatar from '@mui/material/Avatar';
-import PersonIcon from "@mui/icons-material/Person";
 import { Grid, Card, CardMedia, CardContent, Button } from '@mui/material';
 import dashpic1 from "./images/dashpic-1.jpg";
 import dashpic2 from "./images/dashpic-2.jpg";
 import dashpic3 from "./images/dashpic-3.jpg";
 import CloudIcon from '@mui/icons-material/Cloud';
-import LocalDiningOutlinedIcon from '@mui/icons-material/LocalDiningOutlined';
-import ReportProblemOutlinedIcon from '@mui/icons-material/ReportProblemOutlined';
 import VerifiedOutlinedIcon from '@mui/icons-material/VerifiedOutlined';
-import { Link } from "react-router-dom";
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import LunchDiningOutlinedIcon from '@mui/icons-material/LunchDiningOutlined';
+
+
+
 
 
 
@@ -61,7 +60,6 @@ function Dashboard() {
 
     // fetch user information on component mount
     useEffect(() => {
-        console.log("Component mounted");
         fetchUserInfo();
     }, []);
 
@@ -303,34 +301,46 @@ function Dashboard() {
                                 <div style={{
                                     display: 'flex', justifyContent: 'center',
                                     alignItems: 'center', flexDirection: 'column',
-                                    backgroundColor: 'rgba(28, 28, 30, 0.8)', width: '100%',
-                                    borderBottom: '1px solid #333',
-                                    borderRadius: '20px',
                                 }}>
-                                    <div style={{
-                                        backgroundColor: 'black',
-                                        width: '100%',
-                                    }}></div>
-                                    <Typography
-                                        variant="subtitle1"
-                                        gutterBottom
+                                    <Button
+                                        variant="contained"
                                         sx={{
-                                            fontSize: {
-                                                xs: '1.5em',
-                                                sm: '1.3em',
-                                                md: '1.4em',
-                                                lg: '1.8em',
-                                            },
-                                            fontFamily: 'Russo One, sans-serif',
+                                            borderColor: 'white',
                                             color: 'white',
-                                            // align text to center
-                                            textAlign: 'center',
-                                            marginBottom: '-0.1em',
+                                            fontFamily: 'Russo One, sans-serif',
+                                            backgroundColor: 'forestgreen',
+                                            width: '100%',
+                                            '&:hover': {
+                                                backgroundColor: 'white',
+                                                borderColor: 'white',
+                                                color: 'forestgreen',
+                                                // change text content on hover
+                                                '& .MuiSvgIcon-root': {
+                                                    color: 'forestgreen'
+                                                }
+                                            },
+                                            // style for the icon
+                                            '& .MuiSvgIcon-root': {
+                                                color: 'white',
+                                                // move all the way to the left
+                                                position: 'absolute',
+                                                left: 10
+                                            }
                                         }}
                                     >
-                                        <span style={{ color: '#13bf00' }}>60/62 </span>
-                                        TRAILS OPEN
-                                    </Typography>
+                                        <CheckCircleOutlinedIcon
+                                            sx={{
+                                                color: 'white',
+                                                // move all the way to the left
+                                                position: 'absolute',
+                                                left: 10,
+
+                                            }}
+                                        />
+
+                                        ALL LIFTS OPERATIONAL
+
+                                    </Button>
                                 </div>
                             </CardContent>
                         </Card>
@@ -346,66 +356,51 @@ function Dashboard() {
                                 image={dashpic3}
                                 alt="Dashpic 3"
                             />
-                            <CardContent sx={{ position: 'absolute', top: 0, left: 0, right: 0 }}>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        flexDirection: 'column',
-                                        height: '100%',
-                                    }}
-                                >
-                                    <Typography
-                                        variant="subtitle1"
-                                        gutterBottom
-                                        sx={{
-                                            fontSize: {
-                                                xs: '1.5em',
-                                                sm: '1.3em',
-                                                md: '1.4em',
-                                                lg: '1.8em',
-                                            },
-                                            fontFamily: 'Russo One, sans-serif',
-                                            color: 'white',
-                                            fontWeight: 'bold',
-                                            textAlign: 'center',
-                                            textShadow: '3px 2px 2px black',
-                                            paddingBottom: {
-                                                xs: '10em',
-                                                sm: '9em',
-                                                md: '7em',
-                                                lg: '8em',
-                                            },
-                                        }}
-                                    >
-                                        Fat Flame Steakhouse
-                                    </Typography>
-
+                            <CardContent sx={{ position: 'absolute', bottom: -10, left: 0, right: 0 }}>
+                                <div style={{
+                                    display: 'flex', justifyContent: 'center',
+                                    alignItems: 'center', flexDirection: 'column',
+                                }}>
                                     <Button
                                         variant="contained"
-                                        // link to /dine
-                                        component={Link}
-                                        to="/dine"
                                         sx={{
                                             borderColor: 'white',
-                                            color: 'black',
-                                            backgroundColor: 'white',
+                                            color: 'white',
                                             fontFamily: 'Russo One, sans-serif',
-
+                                            backgroundColor: 'darkorange',
+                                            width: '100%',
                                             '&:hover': {
-                                                backgroundColor: 'darkorange',
+                                                backgroundColor: 'white',
                                                 borderColor: 'white',
-                                                color: 'white'
+                                                color: 'darkorange',
+                                                // change text content on hover
+                                                '& .MuiSvgIcon-root': {
+                                                    color: 'darkorange'
+                                                }
+                                            },
+                                            // style for the icon
+                                            '& .MuiSvgIcon-root': {
+                                                color: 'white',
+                                                // move all the way to the left
+                                                position: 'absolute',
+                                                left: 10
                                             }
                                         }}
                                     >
-                                        Grab a byte
+                                        <LunchDiningOutlinedIcon
+                                            sx={{
+                                                color: 'white',
+                                                // move all the way to the left
+                                                position: 'absolute',
+                                                left: 10,
+
+                                            }}
+                                        />
+
+                                        UPGRADE MEAL PLAN
 
                                     </Button>
                                 </div>
-
-
                             </CardContent>
                         </Card>
                     </Grid>
@@ -460,23 +455,23 @@ function Dashboard() {
 
                     }}>
 
-                        <VerifiedOutlinedIcon
-                            sx={{
-                                fontSize: {
-                                    xs: '1.5em',
-                                    sm: '1.5em',
-                                    md: '1.5em',
-                                    lg: '1.5em',
-                                },
-                                marginRight: '0.5em',
-                                verticalAlign: 'middle',
-                                marginBottom: '-0.01em',
-                                marginTop: '-0.1em',
-                                // #36d1dc → #5b86e5 gradient
-                                color: '#darkorange'
-                            }}
-                        />
-                        23-24 VIP season pass holder
+                    <VerifiedOutlinedIcon
+                        sx={{
+                            fontSize: {
+                                xs: '1.5em',
+                                sm: '1.5em',
+                                md: '1.5em',
+                                lg: '1.5em',
+                            },
+                            marginRight: '0.5em',
+                            verticalAlign: 'middle',
+                            marginBottom: '-0.01em',
+                            marginTop: '-0.1em',
+                            // #36d1dc → #5b86e5 gradient
+                            color: '#darkorange'
+                        }}
+                    />
+                    23-24 VIP season pass holder
                 </Typography>
             </Box>
 
