@@ -7,6 +7,7 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import ForgotPass from './ForgotPass';
 import Dashboard from './Dashboard';
+import Dine from './Dine';
 import React from 'react';
 
 import { CssBaseline } from '@mui/material';
@@ -53,6 +54,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} exact />
           <Route path="/forgotpass" element={<ForgotPass />} exact />
           <Route path="/dashboard" element={<Dashboard />} exact />
+          <Route path="/dine" element={<Dine />} exact />
         </Routes>
         <Footer />
       </Router>

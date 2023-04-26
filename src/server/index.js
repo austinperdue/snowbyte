@@ -150,3 +150,34 @@ app.post('/api/auth/reset-password', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+
+// API endpoint for user information
+app.get('/api/user/:guest_id', async (req, res) => {
+  console.log('Fetching user data');
+  const { guest_id } = req.params;
+
+  try {
+    const [userRows] = await db.execute('SELECT * FROM guests WHERE guest_id = ?', [guest_id]);
+
+    if (userRows.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const user = userRows[0];
+    console.log('User data: ', user); // debug
+
+     // Set the Content-Type header explicitly
+     res.setHeader('Content-Type', 'application/json');
+
+    res.status(200).json({
+      guest_id: user.guest_id,
+      firstName: user.first_name,
+      lastName: user.last_name,
+      email: user.email_address,
+    });
+  } catch (error) {
+    console.error('Error during fetching user:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
