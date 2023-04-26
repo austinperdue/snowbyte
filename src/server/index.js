@@ -151,33 +151,28 @@ app.post('/api/auth/reset-password', async (req, res) => {
   }
 });
 
-
-// API endpoint for user information
-app.get('/api/user/:guest_id', async (req, res) => {
-  console.log('Fetching user data');
+// API endpoint to query for guest reservations
+app.get('/api/reservations/:guest_id', async (req, res) => {
+  console.log('Querying for guest reservations');
   const { guest_id } = req.params;
 
   try {
-    const [userRows] = await db.execute('SELECT * FROM guests WHERE guest_id = ?', [guest_id]);
+    // Query the database for reservations with the provided guest_id
+    const [reservationRows] = await db.execute('SELECT * FROM reservations WHERE guest_id = ?', [guest_id]);
 
-    if (userRows.length === 0) {
-      return res.status(404).json({ message: 'User not found' });
+    if (reservationRows.length === 0) {
+      console.log(`No reservations found for guest_id: ${guest_id}`);
+      return res.status(200).json({ message: 'No reservations found', reservations: [] });
     }
 
-    const user = userRows[0];
-    console.log('User data: ', user); // debug
-
-     // Set the Content-Type header explicitly
-     res.setHeader('Content-Type', 'application/json');
-
-    res.status(200).json({
-      guest_id: user.guest_id,
-      firstName: user.first_name,
-      lastName: user.last_name,
-      email: user.email_address,
-    });
+    console.log(`Reservations found for guest_id: ${guest_id}`);
+    res.status(200).json({ message: 'Reservations retrieved successfully', reservations: reservationRows });
   } catch (error) {
-    console.error('Error during fetching user:', error);
+    console.error('Error during reservations retrieval:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+
+
+

@@ -13,14 +13,10 @@ import VerifiedOutlinedIcon from '@mui/icons-material/VerifiedOutlined';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import LunchDiningOutlinedIcon from '@mui/icons-material/LunchDiningOutlined';
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
-
-
-
-
-
-
+import Reservations from "./components/Reservations";
 
 function Dashboard() {
+
 
     // define state variable for the lift dialog
     const [openLift, setOpenLift] = useState(false);
@@ -372,6 +368,7 @@ function Dashboard() {
 
                                         <DialogContent>
                                             <DialogContentText
+                                            component={'div'}
                                                 sx={{
                                                     fontFamily: 'Bitter, serif',
                                                     color: 'black',
@@ -609,17 +606,12 @@ function Dashboard() {
                                                 sx={{
                                                     fontFamily: 'Bitter, serif',
                                                     color: 'black',
-                                                    marginTop: '1em',
-                                                    marginBottom: '1em',
+                                                    marginTop: '2em',
                                                 }}
                                             >
-                                                
                                                 Thank you for choosing Snowbyte. We've automatically added a $500 meal voucher redeemable at any dining
                                                 location to your account. It is non-transferable and expires at the end of the season. If you have any
                                                 questions or would like to learn more about our dining options, please visit our dine page.
-                                                
-
-                                                    
                                             </DialogContentText>
                                         </DialogContent>
 
@@ -689,9 +681,6 @@ function Dashboard() {
                         color: 'darkorange',
                         marginBottom: '1em',
                         verticalAlign: 'middle',
-                        //background: 'linear-gradient(45deg, #37CEDC, #5A88E4, #37CEDC)',
-                        //WebkitBackgroundClip: 'text',
-                        //WebkitTextFillColor: 'transparent',
 
                     }}>
 
@@ -707,17 +696,39 @@ function Dashboard() {
                             verticalAlign: 'middle',
                             marginBottom: '-0.01em',
                             marginTop: '-0.1em',
-                            // #36d1dc → #5b86e5 gradient
                             color: '#darkorange'
                         }}
                     />
                     23-24 VIP season pass holder
                 </Typography>
             </Box>
+                    
+            {/* Reservation section */}
+            <Typography
+                variant="h4"
+                sx={{
+                    marginTop: '3rem',
+                    marginBottom: '1rem',
+                    fontFamily: 'Russo One, sans-serif'
 
+                }}
+            >
+                Reservations
+            </Typography>
+            <Reservations guest_id={guestId}/>
 
+            {/* Rentals section */}
+            <Typography
+                variant="h4"
+                sx={{
+                    marginTop: '5rem',
+                    marginBottom: '1rem',
+                    fontFamily: 'Russo One, sans-serif'
 
-
+                }}
+            >
+                Rentals
+            </Typography>
 
         </div>
     );
