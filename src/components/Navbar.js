@@ -256,7 +256,7 @@ export default function Navbar({ isAuthenticated, handleLogout }) {
                             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
                         >
                             <MenuItem component={Link} to="/dashboard" onClick={handleCloseUserMenu}>
-                                Dashboard
+                                My Account
                             </MenuItem>
                             <MenuItem onClick={handleUserLogout}>Log out</MenuItem>
                         </Menu>
