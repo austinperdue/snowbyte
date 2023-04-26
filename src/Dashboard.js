@@ -22,8 +22,11 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
 
 function Dashboard() {
 
-    // define state variable for the dialog
-    const [openDialog, setOpenDialog] = useState(false);
+    // define state variable for the lift dialog
+    const [openLift, setOpenLift] = useState(false);
+
+    // define state variable for dining dialog
+    const [openDining, setOpenDining] = useState(false);
 
     // gradient text
     const GradientText = ({ text, fromColor, toColor }) => {
@@ -309,7 +312,7 @@ function Dashboard() {
                                 }}>
                                     <Button
                                         variant="contained"
-                                        onClick={() => { setOpenDialog(true) }}
+                                        onClick={() => { setOpenLift(true) }}
                                         sx={{
                                             borderColor: 'white',
                                             color: 'white',
@@ -350,9 +353,9 @@ function Dashboard() {
                                     <Dialog 
                                     fullWidth
                                     maxWidth="sm"
-                                    open={openDialog} 
+                                    open={openLift} 
                                     onClose={() => 
-                                    setOpenDialog(false)
+                                    setOpenLift(false)
                                     }>
                                         <DialogTitle
                                             sx={{
@@ -486,10 +489,27 @@ function Dashboard() {
                                                     
                                             </DialogContentText>
                                         </DialogContent>
-
+                                                        
                                         <DialogActions>
+                                            <Typography
+                                                variant="subtitle1"
+                                                sx={{
+                                                    fontFamily: 'Russo One, sans-serif',
+                                                    color: 'grey',
+                                                    fontSize: '0.8em',
+                                                    letterSpacing: '0.1em',
+                                                    position: 'absolute',
+                                                    left: 10,
+                                                    paddingTop: '0.5em',
+                                                    paddingBottom: '0.5em',
+                                                    paddingLeft: '1em',
+                                                }}
+                                            >
+
+                                                Last updated: 10:00 AM
+                                            </Typography>
                                             <Button 
-                                            onClick={() => setOpenDialog(false)}
+                                            onClick={() => setOpenLift(false)}
                                             sx={{
                                                 fontFamily: 'Russo One, sans-serif',
                                                 color: 'white',
@@ -526,6 +546,7 @@ function Dashboard() {
                                 }}>
                                     <Button
                                         variant="contained"
+                                        onClick={() => { setOpenDining(true) }}
                                         sx={{
                                             borderColor: 'white',
                                             color: 'white',
@@ -560,9 +581,65 @@ function Dashboard() {
                                             }}
                                         />
 
-                                        UPGRADE MEAL PLAN
+                                        FREE DINING VOUCHER
 
                                     </Button>
+
+                                    <Dialog 
+                                    fullWidth
+                                    maxWidth="sm"
+                                    open={openDining} 
+                                    onClose={() => 
+                                    setOpenDining(false)
+                                    }>
+                                        <DialogTitle
+                                            sx={{
+                                                fontFamily: 'Russo One, sans-serif',
+                                                color: 'white',
+                                                // add letter spacing
+                                                letterSpacing: '0.1em',
+                                                backgroundColor: 'darkorange',
+                                            }}
+
+                                        >Congratulations!
+                                        </DialogTitle>
+
+                                        <DialogContent>
+                                            <DialogContentText
+                                                sx={{
+                                                    fontFamily: 'Bitter, serif',
+                                                    color: 'black',
+                                                    marginTop: '1em',
+                                                    marginBottom: '1em',
+                                                }}
+                                            >
+                                                
+                                                Thank you for choosing Snowbyte. We've automatically added a $500 meal voucher redeemable at any dining
+                                                location to your account. It is non-transferable and expires at the end of the season. If you have any
+                                                questions or would like to learn more about our dining options, please visit our dine page.
+                                                
+
+                                                    
+                                            </DialogContentText>
+                                        </DialogContent>
+
+                                        <DialogActions>
+                                            <Button 
+                                            onClick={() => setOpenDining(false)}
+                                            sx={{
+                                                fontFamily: 'Russo One, sans-serif',
+                                                color: 'white',
+                                                backgroundColor: 'darkorange',
+                                                '&:hover': {
+                                                    backgroundColor: 'orange',
+
+                                                }
+                                            }}
+                                            >
+                                                THANK YOU</Button>
+                                        </DialogActions>
+
+                                    </Dialog>
                                 </div>
                             </CardContent>
                         </Card>
