@@ -12,6 +12,8 @@ import CloudIcon from '@mui/icons-material/Cloud';
 import VerifiedOutlinedIcon from '@mui/icons-material/VerifiedOutlined';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import LunchDiningOutlinedIcon from '@mui/icons-material/LunchDiningOutlined';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
+
 
 
 
@@ -19,6 +21,9 @@ import LunchDiningOutlinedIcon from '@mui/icons-material/LunchDiningOutlined';
 
 
 function Dashboard() {
+
+    // define state variable for the dialog
+    const [openDialog, setOpenDialog] = useState(false);
 
     // gradient text
     const GradientText = ({ text, fromColor, toColor }) => {
@@ -241,7 +246,7 @@ function Dashboard() {
                                             paddingTop: '2em',
                                         }}
                                     >
-                                        Currently cloudy 4° F
+                                        Currently cloudy 7° F
                                     </Typography>
                                     <Typography
                                         variant="body2"
@@ -304,6 +309,7 @@ function Dashboard() {
                                 }}>
                                     <Button
                                         variant="contained"
+                                        onClick={() => { setOpenDialog(true) }}
                                         sx={{
                                             borderColor: 'white',
                                             color: 'white',
@@ -341,6 +347,163 @@ function Dashboard() {
                                         ALL LIFTS OPERATIONAL
 
                                     </Button>
+                                    <Dialog 
+                                    fullWidth
+                                    maxWidth="sm"
+                                    open={openDialog} 
+                                    onClose={() => 
+                                    setOpenDialog(false)
+                                    }>
+                                        <DialogTitle
+                                            sx={{
+                                                fontFamily: 'Russo One, sans-serif',
+                                                color: 'white',
+                                                // add letter spacing
+                                                letterSpacing: '0.1em',
+
+                                                backgroundColor: 'darkorange',
+                                            }}
+
+                                        >Lift Status
+                                        </DialogTitle>
+
+                                        <DialogContent>
+                                            <DialogContentText
+                                                sx={{
+                                                    fontFamily: 'Bitter, serif',
+                                                    color: 'black',
+                                                    marginTop: '1em',
+                                                    marginBottom: '1em',
+                                                }}
+                                            >
+                                                
+                                                All lifts are currently operational. If you have a question about
+                                                a specific lift, please contact us.
+                                                <br></br>
+                                                <br></br>
+                                                <Typography
+                                                    variant="subtitle1"
+                                                    sx={{
+                                                        fontFamily: 'Russo One, sans-serif',
+                                                        color: 'black',
+                                                        letterSpacing: '0.1em',
+                                                    }}
+                                                >
+                                                Super skyflyer
+                                                <span style={{ 
+                                                    color: 'forestgreen',
+                                                    // align to right
+                                                    float: 'right',
+
+                                                    }}>OPEN</span>
+                                                </Typography>
+
+                                                <Typography
+                                                    variant="subtitle1"
+                                                    sx={{
+                                                        fontFamily: 'Russo One, sans-serif',
+                                                        color: 'black',
+                                                        letterSpacing: '0.1em',
+                                                    }}
+                                                >
+                                                East Village Express
+                                                <span style={{ 
+                                                    color: 'forestgreen',
+                                                    // align to right
+                                                    float: 'right',
+
+                                                    }}>OPEN</span>
+                                                </Typography>
+
+                                                <Typography
+                                                    variant="subtitle1"
+                                                    sx={{
+                                                        fontFamily: 'Russo One, sans-serif',
+                                                        color: 'black',
+                                                        letterSpacing: '0.1em',
+                                                    }}
+                                                >
+                                                Little Eagle
+                                                <span style={{ 
+                                                    color: 'forestgreen',
+                                                    // align to right
+                                                    float: 'right',
+
+                                                    }}>OPEN</span>
+                                                </Typography>
+
+                                                <Typography
+                                                    variant="subtitle1"
+                                                    sx={{
+                                                        fontFamily: 'Russo One, sans-serif',
+                                                        color: 'black',
+                                                        letterSpacing: '0.1em',
+                                                    }}
+                                                >
+                                                Devil's Descent
+                                                <span style={{ 
+                                                    color: 'forestgreen',
+                                                    // align to right
+                                                    float: 'right',
+
+                                                    }}>OPEN</span>
+                                                </Typography>
+
+                                                <Typography
+                                                    variant="subtitle1"
+                                                    sx={{
+                                                        fontFamily: 'Russo One, sans-serif',
+                                                        color: 'black',
+                                                        letterSpacing: '0.1em',
+                                                    }}
+                                                >
+                                                Skyview cablecar
+                                                <span style={{ 
+                                                    color: 'darkorange',
+                                                    // align to right
+                                                    float: 'right',
+
+                                                    }}>SUMMER ONLY</span>
+                                                </Typography>
+
+                                                <Typography
+                                                    variant="subtitle1"
+                                                    sx={{
+                                                        fontFamily: 'Russo One, sans-serif',
+                                                        color: 'black',
+                                                        letterSpacing: '0.1em',
+                                                    }}
+                                                >
+                                                Ballistic Backbowl
+                                                <span style={{ 
+                                                    color: 'forestgreen',
+                                                    // align to right
+                                                    float: 'right',
+
+                                                    }}>OPEN</span>
+                                                </Typography>
+
+                                                    
+                                            </DialogContentText>
+                                        </DialogContent>
+
+                                        <DialogActions>
+                                            <Button 
+                                            onClick={() => setOpenDialog(false)}
+                                            sx={{
+                                                fontFamily: 'Russo One, sans-serif',
+                                                color: 'white',
+                                                backgroundColor: 'darkorange',
+                                                '&:hover': {
+                                                    backgroundColor: 'orange',
+
+                                                }
+                                            }}
+                                            >
+                                                EXIT</Button>
+                                        </DialogActions>
+
+                                    </Dialog>
                                 </div>
                             </CardContent>
                         </Card>
