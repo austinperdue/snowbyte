@@ -451,12 +451,12 @@ function Dashboard() {
                             lg: '1.8em',
                         },
                         fontFamily: 'Russo One, sans-serif',
-                        color: 'black',
+                        color: 'darkorange',
                         marginBottom: '1em',
                         verticalAlign: 'middle',
-                        background: 'linear-gradient(45deg, #36d1dc, #FFC271)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
+                        //background: 'linear-gradient(45deg, #37CEDC, #5A88E4, #37CEDC)',
+                        //WebkitBackgroundClip: 'text',
+                        //WebkitTextFillColor: 'transparent',
 
                     }}>
 
@@ -473,7 +473,7 @@ function Dashboard() {
                                 marginBottom: '-0.01em',
                                 marginTop: '-0.1em',
                                 // #36d1dc → #5b86e5 gradient
-                                color: '#3BC8DE'
+                                color: '#darkorange'
                             }}
                         />
                         23-24 VIP season pass holder
