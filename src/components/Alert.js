@@ -9,7 +9,7 @@ const AlertContainer = styled(Box)(({ theme }) => ({
   left: 0,
   right: 0,
   zIndex: theme.zIndex.appBar + 1,
-  backgroundColor: 'orange',
+  backgroundColor: 'darkorange',
   textAlign: 'center',
   // temporary fix for alert bar covering navbar
   height: '48px'

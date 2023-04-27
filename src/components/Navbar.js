@@ -71,7 +71,7 @@ export default function Navbar({ isAuthenticated, handleLogout }) {
                             sx={{
                                 display: { xs: 'none', md: 'flex' },
                                 mr: 1,
-                                color: 'black',
+                                color: 'darkorange',
                             }}
                         />
                         <Typography
@@ -180,7 +180,7 @@ export default function Navbar({ isAuthenticated, handleLogout }) {
                                         marginLeft: link_spacing === 0 ? 3 : 1,
                                         // change color on hover
                                         '&:hover': {
-                                            color: '#FCB976',
+                                            color: 'darkorange',
                                             backgroundColor: 'transparent',
                                         },
                                     }}
@@ -210,7 +210,7 @@ export default function Navbar({ isAuthenticated, handleLogout }) {
                                             const lastName = decoded.lastName;
                                             const bgColor = stringToColor(firstName + lastName);
                                             return isDarkColor(bgColor) ? 'white' : 'black';
-                                        })(),
+                                        })()
                                     }}
                                 >
                                     {isAuthenticated
