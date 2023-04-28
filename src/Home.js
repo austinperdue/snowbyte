@@ -5,6 +5,7 @@ import VideoSection from './components/VideoSection';
 import Amenities from './components/Amenities';
 import Partners from './components/Partners';
 import homeImage from './images/home_image.jpg';
+import { Link } from 'react-router-dom';
 
 
 
@@ -106,7 +107,7 @@ export default function Home() {
                     width: '100%',
                 }}
             >
-                <Grid container spacing={7} sx={{ width: '100%', margin: 0}}>
+                <Grid container spacing={7} sx={{ width: '100%', margin: 0 }}>
                     <Grid item xs={12} md={6}>
                         <Box
                             sx={{
@@ -132,14 +133,23 @@ export default function Home() {
                             </Typography>
                             <br></br>
                             <br></br>
-                            <Typography
-                                variant="h5"
+                            <Button
+                                variant="contained"
+                                component={Link}
+                                to="/faq"
                                 sx={{
-                                    fontFamily: 'Bitter, serif'
+                                    color: 'white',
+                                    backgroundColor: 'darkorange',
+                                    fontFamily: 'Russo One, sans-serif',
+                                    '&:hover': {
+                                        backgroundColor: 'white',
+                                        borderColor: 'darkorange',
+                                        color: 'darkorange'
+                                    }
                                 }}
                             >
-                                Let us help you.
-                            </Typography>
+                                Start here
+                            </Button>
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={6}>
@@ -150,6 +160,7 @@ export default function Home() {
                                 alignItems: 'center',
                                 height: '100%',
                                 paddingRight: { xs: 2, md: 4 },
+                                borderLeft: { xs: '2px solid darkorange', md: '3px solid darkorange' },
 
                             }}
                         >
@@ -157,16 +168,20 @@ export default function Home() {
                                 variant="body1"
                                 sx={{
                                     textAlign: 'justify',
-                                    fontFamily: 'Bitter, serif'
+                                    fontFamily: 'Bitter, serif',
+                                    paddingRight: { xs: 2, md: 4, lg: 6 },
+                                    paddingLeft: { xs: 2, md: 4 },
                                 }}
                             >
-                                Whether you're looking for a relaxing getaway 
-                                or an action-packed adventure, our team of experienced 
-                                professionals can help you plan the perfect trip. We offer a 
-                                range of services, including accommodation bookings, 
-                                transportation arrangements, and activity recommendations. 
-                                Contact us today to learn more about how we can make your 
-                                dream vacation a reality.
+                                At our ski resort, we understand that every guest is unique and 
+                                has their own idea of the perfect vacation. That's why our team of 
+                                experts is here to help you create a tailor-made experience that caters to your every need.
+                                From luxury accommodation options to exhilarating outdoor activities, we've 
+                                got you covered. Our knowledgeable staff can assist with all aspects of trip planning, including 
+                                transportation arrangements and activity recommendations, so that you can sit back, relax, and enjoy your 
+                                well-deserved holiday. No matter what you're looking for, our team is dedicated to providing you with the 
+                                highest level of service and ensuring that your stay with us is truly unforgettable. Contact us today to learn 
+                                more about our resort and how we can help you plan the ultimate winter getaway.
                             </Typography>
                         </Box>
                     </Grid>
@@ -174,16 +189,12 @@ export default function Home() {
             </Box>
 
             <br></br>
-            <br></br>            
+            <br></br>
             <br></br>
             <br></br>
             <br></br>
             <br></br>
             <VideoSection />
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
             <Amenities />
             <br></br>
             <br></br>

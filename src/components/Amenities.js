@@ -1,9 +1,14 @@
 // src/components/Amenities.js
 import React from 'react';
-import { Box, Grid, Typography, Button } from '@mui/material';
+import { Box, Grid, Typography, Button, Chip } from '@mui/material';
 import iceRinkImage from '../images/ice_rink.jpg';
 import tavernImage from '../images/bar_lounge.jpg';
 import poolImage from '../images/hot_springs.jpg';
+import amenitiesHeader from '../images/amenities_header.png';
+import shadows from '@mui/material/styles/shadows';
+
+
+
 
 const amenities = [
   {
@@ -29,18 +34,70 @@ const amenities = [
 
 export default function Amenities() {
   return (
-    <Box sx={{ flexGrow: 1, padding: 4, backgroundColor: 'white' }}>
-      <Typography
-        variant="h3"
-        align="center"
-        gutterBottom
-        sx={{ marginBottom: 4, fontFamily: 'Russo One, sans-serif' }}
-      >
-        SOMETHING FOR EVERYONE
-      </Typography>
-      <br></br>
-      <br></br>
-      <br></br>
+    <Box sx={{ flexGrow: 1, padding: 0, backgroundColor: 'white' }}>
+      {/* Responsive container for the image and text */}
+      <Box
+                sx={{
+                    position: 'relative',
+                    width: '100%',
+                    minHeight: '25vh',
+                    overflow: 'hidden',
+                    paddingBottom: '2em',
+                    marginBottom: '4em',
+                    marginTop: '10em',
+                }}>
+                {/* Background image */}
+                <Box
+                    //component="img"
+                    //src={amenitiesHeader}
+                    alt="FAQ header image"
+                    sx={{
+                        color: 'white',
+                        width: '100%',
+                        height: '130%',
+                        objectFit: 'cover',
+                        objectPosition: 'center', // default object position
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        zIndex: 0,
+                        '@media (min-width: 600px)': {
+                            // larger desktop screens, allows to scale image
+                            objectPosition: '60% 60%',
+                        },
+                        pointerEvents: 'none',
+
+                        backgroundColor: 'darkorange'
+                    }}
+                />
+                {/* Text overlay */}
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        textAlign: 'center',
+                    }}>
+                    <Typography
+                        variant="h4"
+                        sx={{
+                          fontSize: {
+                            sm: '2.5em',
+                            md: '2.5em',
+                            lg: '3.2em',
+                          },
+                          fontFamily: 'Russo One, sans-serif',
+                          color: 'black',
+                          letterSpacing: '0.1em',
+                          textAlign: 'center',
+                          color: 'white',
+                          textShadow: '0px 4px 0px #000000, 0px 4px 0px black',
+                        }}>
+                        SEASONAL AMENITIES
+                    </Typography>
+                </Box>
+            </Box>
       <Grid container spacing={8} justifyContent="center">
         {amenities.map((amenity, index) => (
           <Grid
@@ -66,6 +123,9 @@ export default function Amenities() {
                 marginBottom: { xs: 2, md: 0 },
                 marginRight: { xs: 0, md: index % 2 === 0 ? 4 : 0 },
                 marginLeft: { xs: 0, md: index % 2 === 0 ? 0 : 4 },
+                padding: 0,
+                borderRadius: 4,
+
               }}
             />
             <Box
@@ -80,9 +140,7 @@ export default function Amenities() {
 
                 // justify text to the right
                 textAlign: { xs: 'center', md: 'left' },
-                
-
-
+                borderTop: { md: '2px solid darkorange' },
                 
               }}
             >
@@ -92,6 +150,20 @@ export default function Amenities() {
                 sx={{ fontWeight: 'bold', fontFamily: 'Bitter, serif' }}
               >
                 {amenity.title}
+                <span>
+                  <Chip 
+                  label="OPEN"
+                  variant="outlined"
+                  color="success"
+                  sx={{ 
+                    marginLeft: 2,
+                    fontFamily: 'Russo One, sans-serif',
+                    letterSpacing: 2,
+                    border: '2px solid forestgreen',
+                    marginBottom: 1,
+                    }} 
+                    />
+                </span>
               </Typography>
               <Typography sx={{ fontFamily: 'Bitter, serif' }}>
                 {amenity.description}
