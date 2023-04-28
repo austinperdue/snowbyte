@@ -113,24 +113,22 @@ export default function FAQ() {
                     variant="h5"
                     sx={{
                         fontSize: {
-                            xs: '1em',
-                            sm: '1.3em',
-                            md: '1.5em',
-                            lg: '2em',
+                            xs: '1.5em',
+                            md: '2em',
 
                         },
                         fontFamily: 'Russo One, sans-serif',
                         color: 'black',
                         textAlign: 'center',
                         paddingBottom: '2em',
-                        paddingTop: '2em',
+                        paddingTop: '1em',
                     }}
                 >
                     Frequently Asked Questions
                 </Typography>
 
 
-                <Box sx={{ textAlign: 'left', maxWidth: '80%', margin: '0 auto' }}>
+                <Box sx={{ textAlign: 'left', maxWidth: '70%', margin: '0 auto', paddingBottom: '6em' }}>
                     {faqs.map((faq, index) => (
                         <Accordion
                             key={index}
@@ -193,16 +191,20 @@ export default function FAQ() {
                         </Accordion>
                     ))}
                 </Box>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
                 <Box
 
                     sx={{
                         textAlign: 'center',
                         marginTop: 4,
-                        display: { xs: 'block', sm: 'block' }
+                        padding: 8,
+                        paddingTop: 10,
+                        width: '50%',
+                        margin: '0 auto',
+                        display: { xs: 'block', sm: 'block' },
+                        borderTop: '4px solid darkorange',
+                        '@media (max-width: 600px)': { //breakpoint for mobile text view
+                            width: '100%',
+                        },
                     }}
                 >
                     <Typography
@@ -212,16 +214,10 @@ export default function FAQ() {
                     >
                         Can't find your question?
                     </Typography>
-                    <br></br>
                     <Typography sx={{ fontFamily: 'Bitter, serif' }}>
                         If you can't find the answer to your question in our FAQ, please feel free to contact our support team. We are always here to help and provide you with any information you need. You can reach us by phone, email, or through our online contact form.
                     </Typography>
                 </Box>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-
             </Box>
         </div>
 
