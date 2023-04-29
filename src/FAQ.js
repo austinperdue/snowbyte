@@ -2,8 +2,6 @@
 import React from 'react';
 import { Box, Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import zIndex from '@mui/material/styles/zIndex';
 import faqHeaderImage from './images/clouds.jpg';
 
 const faqs = [
