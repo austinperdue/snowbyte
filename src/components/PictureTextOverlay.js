@@ -90,12 +90,6 @@ const PictureTextOverlay = ({ image, text, subText }) => {
                             margin: '0 0.5em',
                             // move box down
                             transform: 'translateY(5em)',
-
-                        
-
-
-
-
                         }}
                     />
                 </Typography>

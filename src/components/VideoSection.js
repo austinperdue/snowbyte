@@ -40,7 +40,7 @@ export default function VideoSection() {
                 }}
             >
                 <Typography
-                    variant="h3"
+                    variant="h2"
                     color="white"
                     fontWeight="bold"
                     fontSize={{ xs: '2rem', md: '3.5rem', lg: '5rem' }}
@@ -50,13 +50,32 @@ export default function VideoSection() {
 
                         textShadow: '6px 6px 10px black',
                         fontFamily: 'Russo One, sans-serif',
-                        '&:hover': {
-                            fontSize: { xs: '2.3rem', md: '3.8rem', lg: '5.3rem' },
-                            transition: 'all 0.5s ease',
-                        }
+
+                        
                     }}
                 >
-                    YOUR ADVENTURE AWAITS
+                    A RESORT FOR
+                    <Typography
+                        variant="body"
+                        color="white"
+                        fontWeight="bold"
+                        fontSize={{ xs: '2rem', md: '3.5rem', lg: '5rem' }}
+                        letterSpacing=".5rem"
+                        sx={{
+                            //textShadow: '6px 6px 10px black',
+                            fontFamily: 'Russo One, sans-serif',
+                            WebkitTextStroke: '0.2px white',
+                            WebkitTextFillColor: 'transparent',
+
+                            '&:hover': {
+                                fontSize: { xs: '2.3rem', md: '5rem', lg: '6rem' },
+                                transition: 'all 0.5s ease',
+                            }
+                        }}
+                    >
+                        EVERYONE
+                    </Typography>
+                    
                 </Typography>
             </Box>
         </Box>

@@ -1,14 +1,15 @@
 // src/pages/FAQ.js
 import React from 'react';
-import { Box, Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import zIndex from '@mui/material/styles/zIndex';
-import faqHeaderImage from './images/clouds.jpg';
+import { Box, Typography } from '@mui/material';
 import landscapeImage from './images/landscape.jpg';
 import sbLogo from './images/sblogo.png';
 import PictureTextOverlay from './components/PictureTextOverlay';
-import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
+import Amenities from './components/Amenities';
+import treeImage from './images/treeline.jpg';
+import PictureCard from './components/PictureCard';
+import trailmapImage from './images/trailmap.jpg';
+import wintermapImage from './images/wintermap.jpg';
+import peaksImage from './images/peaks.jpg';
 
 
 export default function Explore() {
@@ -36,7 +37,7 @@ export default function Explore() {
                     flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    marginTop: '-4em',
+                    marginTop: '4em',
                     height: '25vh',
                 }}
             >
@@ -73,7 +74,7 @@ export default function Explore() {
                     <Typography
                         variant="h1"
                         sx={{
-                            color: 'darkorange',
+                            //color: 'darkorange',
                             fontFamily: 'Russo One, sans-serif',
                             fontSize: {
                                 xs: '2em',
@@ -86,7 +87,12 @@ export default function Explore() {
                             width: '100%',
                             paddingLeft: '5%',
                             // black text shadow
-                            textShadow: '4px 4px 0px black, 5px 5px 0px black',
+                            //textShadow: '4px 4px 0px black, 5px 5px 0px black',
+
+                            // make color // background color, gradient darkorange to orange
+                            background: 'linear-gradient(45deg, #FF8E53 50%, #FE6B8B 100%)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
                         }}
                     >
                         7 peaks.
@@ -112,6 +118,127 @@ export default function Explore() {
                     </Typography>
                 </Box>
             </Box>
+
+            <Amenities />
+
+            
+            <Box sx={{
+                position: 'relative',
+                width: '100%',
+                minHeight: '30vh',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: '4em',
+                height: '25vh',
+            }}>
+                <Box sx={{
+                    flexShrink: 0,
+                    width: '100%',
+                    height: '100%',
+                    backgroundImage: `url(${treeImage})`,
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                }}>
+                    <Box sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: '100%',
+                        height: '100%',
+                    }}>
+                        <Typography variant="h1" sx={{
+                            color: 'white',
+                            fontFamily: 'Russo One, sans-serif',
+                            fontSize: {
+                                xs: '2em',
+                                sm: '3em',
+                                md: '4em',
+                                lg: '5em',
+                                xl: '6em',
+                            },
+                            textAlign: 'center',
+                            width: '100%',
+                            
+                            // text transparent black stroke
+                            WebkitTextStroke: '1px black',
+                            WebkitTextStrokeWidth: '2px',
+                            WebkitTextFillColor: 'transparent',
+
+                        }}>
+                            SUMMER TRAIL MAP
+                        </Typography>
+                    </Box>
+                </Box>
+            </Box>
+
+            <PictureCard imageSrc={trailmapImage}  />
+
+            <Box sx={{
+                position: 'relative',
+                width: '100%',
+                minHeight: '30vh',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: '4em',
+                height: '25vh',
+            }}>
+                <Box sx={{
+                    flexShrink: 0,
+                    width: '100%',
+                    height: '100%',
+                    backgroundImage: `url(${peaksImage})`,
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPositionY: {
+                        md: '30%',
+                        lg: '50%',
+                        xl: '55%',
+                    }
+                }}>
+                    <Box sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: '100%',
+                        height: '100%',
+                    }}>
+                        <Typography variant="h1" sx={{
+                            color: 'white',
+                            fontFamily: 'Russo One, sans-serif',
+                            fontSize: {
+                                xs: '2em',
+                                sm: '3em',
+                                md: '4em',
+                                lg: '5em',
+                                xl: '6em',
+                            },
+                            textAlign: 'center',
+                            width: '100%',
+                            
+                            // text transparent black stroke
+                            WebkitTextStroke: '1px black',
+                            WebkitTextStrokeWidth: '2px',
+                            WebkitTextFillColor: 'transparent',
+
+                        }}>
+                            WINTER TRAIL MAP
+                        </Typography>
+                    </Box>
+                </Box>
+            </Box>
+
+            <PictureCard imageSrc={wintermapImage}  />
+            
 
 
         </div>

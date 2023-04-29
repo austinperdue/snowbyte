@@ -36,7 +36,7 @@ console.log('Connected to the MySQL database');
 
 // API endpoint for user login
 app.post('/api/auth/signin', async (req, res) => {
-  console.log('Someone is trying to log in!');
+  console.log('A guest is trying to log in!');
   //console.log('req.body:', req.body); // debug
   const { email, password } = req.body;
 
@@ -169,6 +169,90 @@ app.get('/api/reservations/:guest_id', async (req, res) => {
     res.status(200).json({ message: 'Reservations retrieved successfully', reservations: reservationRows });
   } catch (error) {
     console.error('Error during reservations retrieval:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// API endpoint for employee login
+app.post('/api/auth/employees', async (req, res) => {
+  console.log('An employee is trying to log in!');
+  //console.log('req.body:', req.body); // debug
+  const { employee_id, password } = req.body;
+
+    // Check that employee_id and password are not undefined
+    if (employee_id === undefined || password === undefined) {
+      return res.status(400).json({ message: 'Missing employee ID or password' });
+    }
+
+
+  try {
+    // 1. Query the database for a user with the provided email
+    const [userRows] = await db.execute('SELECT * FROM employees WHERE employee_id = ?', [employee_id]);
+
+    if (userRows.length === 0) {
+      return res.status(400).json({ message: 'Invalid employee ID or password' });
+    }
+
+    const user = userRows[0];
+
+    // 2. Verify the provided password against the stored password
+    const passwordMatch = password === user.password;
+
+    if (!passwordMatch) {
+      return res.status(400).json({ message: 'Invalid employee ID or password' });
+    }
+
+    // 3. Generate a JWT token
+    const token = jwt.sign(
+      {
+        employee_id: user.employee_id,
+        firstName: user.first_name,
+        lastName: user.last_name,
+        email: user.email_address,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '600s' } // token expires in 10 minutes (600 seconds)
+    );
+
+    // 4. Return a success response with user data or an error message
+    res.status(200).json({
+      message: 'Employee login successful',
+      employee_id: user.employee_id,
+      firstName: user.first_name,
+      lastName: user.last_name,
+      email: user.email_address,
+      token,
+    });
+  } catch (error) {
+    console.error('Error during employee login:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Employee Lookup API endpoint for retrieving guest reservations
+app.get('/api/reservations/:guest_id', async (req, res) => {
+  const { guest_id } = req.params;
+
+  // Check that guest_id is not undefined
+  if (guest_id === undefined) {
+    return res.status(400).json({ message: 'Missing guest ID' });
+  }
+
+  try {
+    // Query the database for reservations with the provided guest_id
+    const [reservationsRows] = await db.execute('SELECT * FROM reservations WHERE guest_id = ?', [guest_id]);
+
+    if (reservationsRows.length === 0) {
+      return res.status(404).json({ message: 'No reservations found for this guest ID' });
+    }
+
+    // Return a success response with reservation data
+    res.status(200).json({
+      message: 'Reservations fetched successfully',
+      reservations: reservationsRows
+    });
+  } catch (error) {
+    console.error('Error fetching reservations:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });

@@ -14,6 +14,8 @@ import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import LunchDiningOutlinedIcon from '@mui/icons-material/LunchDiningOutlined';
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import Reservations from "./components/Reservations";
+import employeeHeader from "./images/employeeHeader.jpg";
+import EmployeeLookup from "./components/EmployeeLookup";
 
 function Dashboard() {
 
@@ -46,6 +48,9 @@ function Dashboard() {
     const [email, setEmail] = useState("");
     const [guestId, setGuestId] = useState("");
 
+    // state variable to check if the user is an employee
+    const [employeeId, setEmployeeId] = useState(null);
+
     const fetchUserInfo = () => {
         const token = localStorage.getItem("token");
 
@@ -56,6 +61,11 @@ function Dashboard() {
                 setLastName(decoded.lastName);
                 setEmail(decoded.email);
                 setGuestId(decoded.guest_id);
+
+                // check if they are in employee
+                if (decoded.employee_id) {
+                    setEmployeeId(decoded.employee_id);
+                }
             } catch (error) {
                 console.error("Error decoding JWT token:", error);
             }
@@ -99,8 +109,7 @@ function Dashboard() {
                 }}>
                 {/* Background image */}
                 <Box
-                    component="img"
-                    src={dashboardHeader}
+
                     alt="FAQ header image"
                     sx={{
                         width: '100%',
@@ -114,6 +123,14 @@ function Dashboard() {
                         '@media (min-width: 600px)': {
                             // larger desktop screens, allows to scale image
                             objectPosition: '30% 30%',
+                        },
+                        backgroundImage: `url(${employeeId ? employeeHeader : dashboardHeader})`,
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPositionY: '20%',
+                        '@media (min-width: 600px)': {
+                            backgroundPositionY: '30%',
                         },
                     }}
                 />
@@ -139,7 +156,8 @@ function Dashboard() {
                             // add slight text shadow
                             textShadow: '2px 2px 5px #000000',
                         }}>
-                        Ski your way.
+                        
+                        {employeeId ? "Do the impossible." : "Ski your way."}
                     </Typography>
                 </Box>
             </Box>
@@ -169,7 +187,7 @@ function Dashboard() {
                         marginBottom: "0.5em",
                     }}
                 >
-                    Welcome back,{" "}
+                    {employeeId ? "Clock in, " : "Welcome back, "}
                     <GradientText text={firstName} fromColor="#ff9966" toColor="#ff5e62" />{""}!
                 </Typography>
 
@@ -186,7 +204,8 @@ function Dashboard() {
                         color: 'black',
                         marginBottom: '1em',
                     }}>
-                    We're happy to see you.
+
+                    {employeeId ? "Have a great shift!" : "We're happy to see you."}
                 </Typography>
 
             </Box>
@@ -346,13 +365,13 @@ function Dashboard() {
                                         ALL LIFTS OPERATIONAL
 
                                     </Button>
-                                    <Dialog 
-                                    fullWidth
-                                    maxWidth="sm"
-                                    open={openLift} 
-                                    onClose={() => 
-                                    setOpenLift(false)
-                                    }>
+                                    <Dialog
+                                        fullWidth
+                                        maxWidth="sm"
+                                        open={openLift}
+                                        onClose={() =>
+                                            setOpenLift(false)
+                                        }>
                                         <DialogTitle
                                             sx={{
                                                 fontFamily: 'Russo One, sans-serif',
@@ -368,7 +387,7 @@ function Dashboard() {
 
                                         <DialogContent>
                                             <DialogContentText
-                                            component={'div'}
+                                                component={'div'}
                                                 sx={{
                                                     fontFamily: 'Bitter, serif',
                                                     color: 'black',
@@ -376,7 +395,7 @@ function Dashboard() {
                                                     marginBottom: '1em',
                                                 }}
                                             >
-                                                
+
                                                 All lifts are currently operational. If you have a question about
                                                 a specific lift, please contact us.
                                                 <br></br>
@@ -389,11 +408,11 @@ function Dashboard() {
                                                         letterSpacing: '0.1em',
                                                     }}
                                                 >
-                                                Super skyflyer
-                                                <span style={{ 
-                                                    color: 'forestgreen',
-                                                    // align to right
-                                                    float: 'right',
+                                                    Super skyflyer
+                                                    <span style={{
+                                                        color: 'forestgreen',
+                                                        // align to right
+                                                        float: 'right',
 
                                                     }}>OPEN</span>
                                                 </Typography>
@@ -406,11 +425,11 @@ function Dashboard() {
                                                         letterSpacing: '0.1em',
                                                     }}
                                                 >
-                                                East Village Express
-                                                <span style={{ 
-                                                    color: 'forestgreen',
-                                                    // align to right
-                                                    float: 'right',
+                                                    East Village Express
+                                                    <span style={{
+                                                        color: 'forestgreen',
+                                                        // align to right
+                                                        float: 'right',
 
                                                     }}>OPEN</span>
                                                 </Typography>
@@ -423,11 +442,11 @@ function Dashboard() {
                                                         letterSpacing: '0.1em',
                                                     }}
                                                 >
-                                                Little Eagle
-                                                <span style={{ 
-                                                    color: 'forestgreen',
-                                                    // align to right
-                                                    float: 'right',
+                                                    Little Eagle
+                                                    <span style={{
+                                                        color: 'forestgreen',
+                                                        // align to right
+                                                        float: 'right',
 
                                                     }}>OPEN</span>
                                                 </Typography>
@@ -440,11 +459,11 @@ function Dashboard() {
                                                         letterSpacing: '0.1em',
                                                     }}
                                                 >
-                                                Devil's Descent
-                                                <span style={{ 
-                                                    color: 'forestgreen',
-                                                    // align to right
-                                                    float: 'right',
+                                                    Devil's Descent
+                                                    <span style={{
+                                                        color: 'forestgreen',
+                                                        // align to right
+                                                        float: 'right',
 
                                                     }}>OPEN</span>
                                                 </Typography>
@@ -457,11 +476,11 @@ function Dashboard() {
                                                         letterSpacing: '0.1em',
                                                     }}
                                                 >
-                                                Skyview cablecar
-                                                <span style={{ 
-                                                    color: 'darkorange',
-                                                    // align to right
-                                                    float: 'right',
+                                                    Skyview cablecar
+                                                    <span style={{
+                                                        color: 'darkorange',
+                                                        // align to right
+                                                        float: 'right',
 
                                                     }}>SUMMER ONLY</span>
                                                 </Typography>
@@ -474,19 +493,19 @@ function Dashboard() {
                                                         letterSpacing: '0.1em',
                                                     }}
                                                 >
-                                                Ballistic Backbowl
-                                                <span style={{ 
-                                                    color: 'forestgreen',
-                                                    // align to right
-                                                    float: 'right',
+                                                    Ballistic Backbowl
+                                                    <span style={{
+                                                        color: 'forestgreen',
+                                                        // align to right
+                                                        float: 'right',
 
                                                     }}>OPEN</span>
                                                 </Typography>
 
-                                                    
+
                                             </DialogContentText>
                                         </DialogContent>
-                                                        
+
                                         <DialogActions>
                                             <Typography
                                                 variant="subtitle1"
@@ -505,17 +524,17 @@ function Dashboard() {
 
                                                 Last updated: 10:00 AM
                                             </Typography>
-                                            <Button 
-                                            onClick={() => setOpenLift(false)}
-                                            sx={{
-                                                fontFamily: 'Russo One, sans-serif',
-                                                color: 'white',
-                                                backgroundColor: 'darkorange',
-                                                '&:hover': {
-                                                    backgroundColor: 'orange',
+                                            <Button
+                                                onClick={() => setOpenLift(false)}
+                                                sx={{
+                                                    fontFamily: 'Russo One, sans-serif',
+                                                    color: 'white',
+                                                    backgroundColor: 'darkorange',
+                                                    '&:hover': {
+                                                        backgroundColor: 'orange',
 
-                                                }
-                                            }}
+                                                    }
+                                                }}
                                             >
                                                 CLOSE</Button>
                                         </DialogActions>
@@ -582,13 +601,13 @@ function Dashboard() {
 
                                     </Button>
 
-                                    <Dialog 
-                                    fullWidth
-                                    maxWidth="sm"
-                                    open={openDining} 
-                                    onClose={() => 
-                                    setOpenDining(false)
-                                    }>
+                                    <Dialog
+                                        fullWidth
+                                        maxWidth="sm"
+                                        open={openDining}
+                                        onClose={() =>
+                                            setOpenDining(false)
+                                        }>
                                         <DialogTitle
                                             sx={{
                                                 fontFamily: 'Russo One, sans-serif',
@@ -616,17 +635,17 @@ function Dashboard() {
                                         </DialogContent>
 
                                         <DialogActions>
-                                            <Button 
-                                            onClick={() => setOpenDining(false)}
-                                            sx={{
-                                                fontFamily: 'Russo One, sans-serif',
-                                                color: 'white',
-                                                backgroundColor: 'darkorange',
-                                                '&:hover': {
-                                                    backgroundColor: 'orange',
+                                            <Button
+                                                onClick={() => setOpenDining(false)}
+                                                sx={{
+                                                    fontFamily: 'Russo One, sans-serif',
+                                                    color: 'white',
+                                                    backgroundColor: 'darkorange',
+                                                    '&:hover': {
+                                                        backgroundColor: 'orange',
 
-                                                }
-                                            }}
+                                                    }
+                                                }}
                                             >
                                                 THANK YOU</Button>
                                         </DialogActions>
@@ -652,6 +671,7 @@ function Dashboard() {
                     //border: '1px solid green',
                 }}>
 
+
                 <Typography
                     variant="h4"
                     sx={{
@@ -665,7 +685,7 @@ function Dashboard() {
                         marginBottom: "0.3em",
                     }}
                 >
-                    My Account
+                    {employeeId ? "Employee Dashboard" : "My Account"}
                 </Typography>
 
                 <Typography
@@ -699,36 +719,48 @@ function Dashboard() {
                             color: '#darkorange'
                         }}
                     />
-                    23-24 VIP season pass holder
+                    {employeeId ? "Software Developer" : "23-24 VIP season pass holder"}
                 </Typography>
             </Box>
-                    
-            {/* Reservation section */}
-            <Typography
-                variant="h4"
-                sx={{
-                    marginTop: '3rem',
-                    marginBottom: '1rem',
-                    fontFamily: 'Russo One, sans-serif'
 
-                }}
-            >
-                Reservations
-            </Typography>
-            <Reservations guest_id={guestId}/>
+            {/* Reservation/rental section specific to guests */}
+            {!employeeId && (
+                <>
+                    {/* Reservation section */}
+                    <Typography
+                        variant="h4"
+                        sx={{
+                            marginTop: '3rem',
+                            marginBottom: '1rem',
+                            fontFamily: 'Russo One, sans-serif'
+                        }}
+                    >
+                        Reservations
+                    </Typography>
+                    <Reservations guest_id={guestId} />
 
-            {/* Rentals section */}
-            <Typography
-                variant="h4"
-                sx={{
-                    marginTop: '5rem',
-                    marginBottom: '1rem',
-                    fontFamily: 'Russo One, sans-serif'
+                    {/* Rentals section */}
+                    <Typography
+                        variant="h4"
+                        sx={{
+                            marginTop: '5rem',
+                            marginBottom: '1rem',
+                            fontFamily: 'Russo One, sans-serif'
+                        }}
+                    >
+                        Rentals
+                    </Typography>
+                </>
+            )}
 
-                }}
-            >
-                Rentals
-            </Typography>
+            {/* EMPLOYEE ONLY Employee lookup */}
+            {employeeId && (
+                <>
+
+                    <EmployeeLookup />
+                </>
+            )}
+
 
         </div>
     );

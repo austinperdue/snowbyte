@@ -3,7 +3,7 @@ import { Box, Grid, Typography, Link, useMediaQuery, useTheme } from '@mui/mater
 import AcUnitRoundedIcon from '@mui/icons-material/AcUnitRounded';
 import { Instagram, Facebook, Twitter, YouTube, Transform } from '@mui/icons-material';
 
-const links = ['Explore', 'Stay', 'Dine', 'FAQ'];
+const links = ['Explore', 'Stay', 'FAQ', 'Employees'];
 
 export default function Footer() {
     const theme = useTheme();

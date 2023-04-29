@@ -12,10 +12,9 @@ import Button from '@mui/material/Button';
 import { AppBar } from '@mui/material';
 import AcUnitRoundedIcon from '@mui/icons-material/AcUnitRounded';
 import Alert from './Alert';
-import FAQ from '../FAQ';
 
 // pages for navbar
-const pages = ['Home', 'Explore', 'Stay', 'Dine', 'Faq'];
+const pages = ['Home', 'Explore', 'Stay', 'Faq'];
 // controls spacing between links
 let link_spacing = 0;
 

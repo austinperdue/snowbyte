@@ -63,13 +63,13 @@ const Reservations = ({ guest_id }) => {
 
     return (
         <div>
-            <TableContainer 
-            component={Paper}
-            sx={{
-                boxShadow: '0 0 10px 0 rgba(0,0,0,0.3)',
-                borderRadius: '10px',
-                overflow: 'hidden',
-            }}
+            <TableContainer
+                component={Paper}
+                sx={{
+                    boxShadow: '0 0 10px 0 rgba(0,0,0,0.3)',
+                    borderRadius: '10px',
+                    overflow: 'hidden',
+                }}
             >
                 <Table>
                     <TableHead
@@ -93,8 +93,8 @@ const Reservations = ({ guest_id }) => {
                                 <TableCell><span style={{ fontFamily: 'Bitter, serif' }}>{reservation.guest_id}</span></TableCell>
                                 <TableCell><span style={{ fontFamily: 'Bitter, serif' }}>{reservation.employee_id}</span></TableCell>
                                 <TableCell><span style={{ fontFamily: 'Bitter, serif' }}>{reservation.room_id}</span></TableCell>
-                                <TableCell><span style={{ fontFamily: 'Bitter, serif' }}>{reservation.checkin_date}</span></TableCell>
-                                <TableCell><span style={{ fontFamily: 'Bitter, serif' }}>{reservation.checkout_date}</span></TableCell>
+                                <TableCell><span style={{ fontFamily: 'Bitter, serif' }}>{formatDate(reservation.checkin_date)}</span></TableCell>
+                                <TableCell><span style={{ fontFamily: 'Bitter, serif' }}>{formatDate(reservation.checkout_date)}</span></TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -102,6 +102,14 @@ const Reservations = ({ guest_id }) => {
             </TableContainer>
         </div>
     );
+};
+
+const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = ("0" + (date.getMonth() + 1)).slice(-2); // Months are zero-indexed in JS
+    const day = ("0" + date.getDate()).slice(-2);
+    return `${month}/${day}/${year}`;
 };
 
 export default Reservations;

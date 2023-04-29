@@ -7,10 +7,11 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import ForgotPass from './ForgotPass';
 import Dashboard from './Dashboard';
-import Dine from './Dine';
 import Explore from './Explore';
 import React from 'react';
 import Partners from './components/Partners';
+import Employees from './Employees';
+
 
 import { CssBaseline } from '@mui/material';
 import Footer from './components/Footer';
@@ -53,11 +54,12 @@ function App() {
           <Route path='/Home' element={<Home />} exact />
           <Route path="/faq" element={<FAQ />} exact />
           <Route path="/signin" element={<SignIn onAuthentication={handleAuthentication} />} exact />
+          <Route path="/employees" element={<Employees onAuthentication={handleAuthentication} />} exact />
           <Route path="/signup" element={<SignUp />} exact />
           <Route path="/forgotpass" element={<ForgotPass />} exact />
           <Route path="/dashboard" element={<Dashboard />} exact />
-          <Route path="/dine" element={<Dine />} exact />
           <Route path="/explore" element={<Explore />} exact />
+          <Route path="/employees" element={<Employees />} exact />
         </Routes>
         <Partners />
         <Footer />

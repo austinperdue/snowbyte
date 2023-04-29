@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import SignInForm from './components/SignInForm';
+import EmployeesForm from './components/EmployeesForm';
 import { useNavigate } from 'react-router-dom';
 
-function SignIn( {onAuthentication} ) {
+function Employees( {onAuthentication} ) {
     
     // user state for error message when login fails
     const [errorMessage, setErrorMessage] = useState(null);
@@ -15,8 +15,8 @@ function SignIn( {onAuthentication} ) {
         try {
             // Handle form submission here
             // call an API to authenticate the user:
-            console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL); 
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/signin`, {
+            console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/employees`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -35,14 +35,14 @@ function SignIn( {onAuthentication} ) {
                 // set user authentication
                 onAuthentication(true);
 
-                // redirect to user dashboard
-                navigate('/dashboard');
+                // redirect to user employee dashboard
+                navigate('/');
 
                 
             } else {
                 // Show an error message
                 console.error('Login failed:', result.message);
-                setErrorMessage('Invalid email or password');
+                setErrorMessage('Invalid employee ID or password');
             }
         } catch (error) {
             // Show an error message
@@ -54,10 +54,10 @@ function SignIn( {onAuthentication} ) {
     return (
         <div style={{ display: 'flex', minHeight: '75vh', flexDirection: 'column', paddingTop: '4em', paddingBottom: '4em' }}>
             <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <SignInForm onSubmit={onSubmit} errorMessage={errorMessage} />
+                <EmployeesForm onSubmit={onSubmit} errorMessage={errorMessage} />
             </div>
         </div>
     );
 }
 
-export default SignIn;
+export default Employees;

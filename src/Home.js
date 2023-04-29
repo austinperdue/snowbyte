@@ -67,7 +67,7 @@ export default function Home() {
                         </Typography>
                         <br></br>
                         <Typography
-                            variant="h4"
+                            variant="body1"
                             color="white"
                             sx={{
                                 fontSize: { xs: '1.2rem', md: '1.5rem' },
@@ -123,7 +123,7 @@ export default function Home() {
                             }}
                         >
                             <Typography
-                                variant='h3'
+                                variant='body1'
                                 fontWeight="bold"
 
 
@@ -151,7 +151,7 @@ export default function Home() {
                                     }
                                 }}
                             >
-                                Start here
+                                CHAT WITH EXPERTS
                             </Button>
                         </Box>
                     </Grid>
@@ -194,7 +194,7 @@ export default function Home() {
             <VideoSection />
             <Testimonial />
 
-            <Amenities />
+           
             
 
         </div>

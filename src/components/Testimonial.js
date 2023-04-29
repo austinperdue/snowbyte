@@ -33,7 +33,7 @@ export default function Testimonial() {
             sx={{
                 color: "#000",
                 paddingTop: { xs: "6rem", sm: "10rem" },
-                paddingBottom: { xs: "6rem", sm: "2rem" },
+                paddingBottom: { xs: "6rem", sm: "12rem" },
             }}
         >
             <Grid container justifyContent="center">
