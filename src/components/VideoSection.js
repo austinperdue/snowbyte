@@ -56,7 +56,6 @@ export default function VideoSection() {
                 >
                     A RESORT FOR
                     <Typography
-                        variant="body"
                         color="white"
                         fontWeight="bold"
                         fontSize={{ xs: '2rem', md: '3.5rem', lg: '5rem' }}
