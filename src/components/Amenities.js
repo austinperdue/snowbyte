@@ -34,7 +34,7 @@ const amenities = [
 
 export default function Amenities() {
   return (
-    <Box sx={{ flexGrow: 1, padding: 0, backgroundColor: 'white' }}>
+    <Box sx={{ flexGrow: 1, padding: 0, backgroundColor: 'white', marginBottom: '5em'}}>
       {/* Responsive container for the image and text */}
       <Box
                 sx={{
@@ -67,7 +67,9 @@ export default function Amenities() {
                         },
                         pointerEvents: 'none',
 
-                        backgroundColor: 'darkorange'
+                        // background color, gradient darkorange to orange
+                        background: 'linear-gradient(45deg, #FF8E53 50%, #FE6B8B 100%)',
+
                     }}
                 />
                 {/* Text overlay */}

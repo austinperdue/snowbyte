@@ -517,7 +517,7 @@ function Dashboard() {
                                                 }
                                             }}
                                             >
-                                                EXIT</Button>
+                                                CLOSE</Button>
                                         </DialogActions>
 
                                     </Dialog>

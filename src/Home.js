@@ -6,6 +6,7 @@ import Amenities from './components/Amenities';
 import Partners from './components/Partners';
 import homeImage from './images/home_image.jpg';
 import { Link } from 'react-router-dom';
+import Testimonial from './components/Testimonial';
 
 
 
@@ -98,16 +99,18 @@ export default function Home() {
             </Box>
 
 
-            <br></br>
-            <br></br>
-            <br></br>
+
             <Box
                 sx={{
                     flexGrow: 1,
                     width: '100%',
+                    height: '100%',
+                    position: 'relative',
+                    marginTop: '8em',
+                    marginBottom: '4em',
                 }}
             >
-                <Grid container spacing={7} sx={{ width: '100%', margin: 0 }}>
+                <Grid container spacing={7} sx={{ width: '100%', margin: 0, marginBottom: '12em' }}>
                     <Grid item xs={12} md={6}>
                         <Box
                             sx={{
@@ -188,18 +191,10 @@ export default function Home() {
                 </Grid>
             </Box>
 
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
             <VideoSection />
+            <Testimonial />
+
             <Amenities />
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
             <Partners />
 
         </div>

@@ -1,4 +1,4 @@
-// src/components/Footer.js
+
 import React from 'react';
 import { Box, Grid, Typography, Link } from '@mui/material';
 import AcUnitRoundedIcon from '@mui/icons-material/AcUnitRounded';
