@@ -31,7 +31,7 @@
     "yup": "^1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start && cross-env NODE_OPTIONS=--max-old-space-size=8192 webpack",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
