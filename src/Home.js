@@ -195,7 +195,7 @@ export default function Home() {
             <Testimonial />
 
             <Amenities />
-            <Partners />
+            
 
         </div>
     );

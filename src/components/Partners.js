@@ -1,48 +1,51 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
-import VerifiedIcon from '@mui/icons-material/Verified';
-import jmuLogo from '../images/jmu_logo.png';
+import { Box, Container, Grid } from '@mui/material';
+import coke from '../svg/coke.svg';
+import gopro from '../svg/gopro.svg';
+import guiness from '../svg/guiness.svg';
+import { BorderTop } from '@mui/icons-material';
 
-export default function Partners() {
-  return (
-    <>
-      <Box sx={{ backgroundColor: '#450084', padding: 4, textAlign: 'center' }}>
-        <br></br>
-        <Typography
-          variant="h4"
-          sx={{ 
-            fontFamily: 'Russo One, sans-serif', 
-            color: '#ffffff', 
-            marginBottom: 0,
-            fontSize: { xs: '1.5rem', md: '1.5rem' },
-            letterSpacing: '.3rem',
-        }}
-        >
-          PROUD PARTNERS
+const logos = [
+    coke,
+    gopro,
+    guiness,
+];
 
-        </Typography>
-        
-        <br></br>
+const Partners = () => {
+    return (
+        <Container maxWidth={false} disableGutters>
+            <Box 
+            sx={{ 
+              backgroundColor: '#E5E5E5', 
+              padding: '2rem',
+              }}>
+                <Grid container justifyContent="center" spacing={{ xs: 6, sm: 8, md: 10 }}>
+                    {logos.map((logo, index) => (
+                        <Grid item xs={6} sm={4} md={3} lg={2} key={index}>
+                            <Box 
+                                component="img" 
+                                src={logo} 
+                                alt={`Logo ${index + 1}`} 
+                                sx={{ 
+                                    width: { xs: '40%', sm: '30%', md: '80%' }, 
+                                    height: 'auto',
+                                    display: 'block',
+                                    marginLeft: 'auto',
+                                    marginRight: 'auto',
+                                    // on hover
+                                    '&:hover': {
+                                        transform: 'scale(1.1)',
+                                        transition: 'all 0.3s ease-in-out',
+                                    },
 
-        <VerifiedIcon
-            sx={{
-                color: '#ffffff',
-                fontSize: { xs: '2rem', md: '2rem' },
-            }}
-        >
-        </VerifiedIcon>
-            
-      </Box>
-      <Box
-        sx={{
-          backgroundColor: '#ffffff',
-          width: { xs: '100%', md: '50%' },
-          margin: '0 auto',
-          padding: 4,
-        }}
-      >
-        <Box component="img" src={ jmuLogo } alt="Partner Logo" sx={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
-      </Box>
-    </>
-  );
-}
+                                }}
+                            />
+                        </Grid>
+                    ))}
+                </Grid>
+            </Box>
+        </Container>
+    );
+};
+
+export default Partners;

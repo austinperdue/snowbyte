@@ -10,6 +10,7 @@ import Dashboard from './Dashboard';
 import Dine from './Dine';
 import Explore from './Explore';
 import React from 'react';
+import Partners from './components/Partners';
 
 import { CssBaseline } from '@mui/material';
 import Footer from './components/Footer';
@@ -58,6 +59,7 @@ function App() {
           <Route path="/dine" element={<Dine />} exact />
           <Route path="/explore" element={<Explore />} exact />
         </Routes>
+        <Partners />
         <Footer />
       </Router>
     </>
