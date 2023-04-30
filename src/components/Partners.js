@@ -3,7 +3,6 @@ import { Box, Container, Grid } from '@mui/material';
 import coke from '../svg/coke.svg';
 import gopro from '../svg/gopro.svg';
 import guiness from '../svg/guiness.svg';
-import { BorderTop } from '@mui/icons-material';
 
 const logos = [
     coke,
@@ -32,9 +31,10 @@ const Partners = () => {
                                     display: 'block',
                                     marginLeft: 'auto',
                                     marginRight: 'auto',
+                                    filter: 'grayscale(100%)',
                                     // on hover
                                     '&:hover': {
-                                        transform: 'scale(1.1)',
+                                        filter: 'grayscale(0%)',
                                         transition: 'all 0.3s ease-in-out',
                                     },
 
