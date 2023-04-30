@@ -36,7 +36,7 @@ function Employees( {onAuthentication} ) {
                 onAuthentication(true);
 
                 // redirect to user employee dashboard
-                navigate('/dashboard');
+                navigate('/');
 
                 
             } else {
