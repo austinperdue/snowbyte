@@ -31,6 +31,7 @@
     "yup": "^1.1.1"
   },
   "scripts": {
+    "serve": "serve -s build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -56,6 +57,7 @@
     ]
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "serve": "^14.2.0"
   }
 }
