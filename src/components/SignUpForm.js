@@ -13,11 +13,6 @@ import {
     Button,
     Grid,
 } from '@mui/material';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-import MobileDatePicker from '@mui/lab/MobileDatePicker';
-import DatePicker from '@mui/lab/DatePicker';
 
 // using YUP as a schema validator for form fields (react-hook-form)
 const signUpSchema = yup.object().shape({
@@ -44,16 +39,9 @@ const signUpSchema = yup.object().shape({
 });
 
 function SignUpForm({ onSubmit, errorMessage }) {
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(signUpSchema),
     });
-
-    const [selectedDate, setSelectedDate] = React.useState(new Date());
-
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
-        setValue('dateOfBirth', date);
-    };
 
     const [securityQuestions] = useState([
         'What was the name of your first pet?',
