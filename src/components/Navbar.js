@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode';
 
 
 // material ui imports
-import { Avatar, Tooltip, Container, Toolbar, Typography, Box, IconButton, Menu, MenuItem, Popover, MenuList, ListItem, ListItemText } from '@mui/material';
+import { Avatar, Container, Toolbar, Typography, Box, IconButton, Menu, MenuItem} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import Button from '@mui/material/Button';
@@ -17,10 +17,6 @@ import Alert from './Alert';
 const pages = ['Home', 'Explore', 'Stay', 'Faq'];
 // controls spacing between links
 let link_spacing = 0;
-
-
-
-
 
 
 export default function Navbar({ isAuthenticated, handleLogout }) {
@@ -209,7 +205,11 @@ export default function Navbar({ isAuthenticated, handleLogout }) {
                                             const lastName = decoded.lastName;
                                             const bgColor = stringToColor(firstName + lastName);
                                             return isDarkColor(bgColor) ? 'white' : 'black';
-                                        })()
+                                        })(),
+                                        // change font
+                                        fontFamily: 'Russo One, sans-serif',
+                                        fontSize: '1rem',
+
                                     }}
                                 >
                                     {isAuthenticated

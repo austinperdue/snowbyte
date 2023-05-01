@@ -36,8 +36,10 @@ console.log('Connected to the MySQL database');
 
 // API endpoint for user login
 app.post('/api/auth/signin', async (req, res) => {
-  console.log('A guest is trying to log in!');
-  //console.log('req.body:', req.body); // debug
+  //console.log('A guest is trying to log in!');
+  //console.log('DEBUG: req.body:', req.body); // debug
+  // print environmental variable for react api url
+  console.log('DEBUG: process.env.REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
   const { email, password } = req.body;
 
 
