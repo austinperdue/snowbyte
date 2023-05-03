@@ -11,6 +11,7 @@ import Explore from './Explore';
 import React from 'react';
 import Partners from './components/Partners';
 import Employees from './Employees';
+import Order from './Order';
 
 
 import { CssBaseline } from '@mui/material';
@@ -60,6 +61,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} exact />
           <Route path="/explore" element={<Explore />} exact />
           <Route path="/employees" element={<Employees />} exact />
+          <Route path="/order" element={<Order />} exact />
         </Routes>
         <Partners />
         <Footer />

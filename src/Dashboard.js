@@ -16,6 +16,9 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
 import Reservations from "./components/Reservations";
 import employeeHeader from "./images/employeeHeader.jpg";
 import EmployeeLookup from "./components/EmployeeLookup";
+import Rentals from "./components/Rentals";
+import BillingInfo from "./components/BillingInfo";
+
 
 function Dashboard() {
 
@@ -156,7 +159,7 @@ function Dashboard() {
                             // add slight text shadow
                             textShadow: '2px 2px 5px #000000',
                         }}>
-                        
+
                         {employeeId ? "Do the impossible." : "Ski your way."}
                     </Typography>
                 </Box>
@@ -667,7 +670,7 @@ function Dashboard() {
                     alignItems: 'left',
                     justifyContent: 'left',
                     textAlign: 'left',
-                    marginBottom: '2em',
+                    marginBottom: '1em',
                     //border: '1px solid green',
                 }}>
 
@@ -719,9 +722,22 @@ function Dashboard() {
                             color: '#darkorange'
                         }}
                     />
-                    {employeeId ? "Software Developer" : "23-24 VIP season pass holder"}
+                    {employeeId ? "Software Developer" : "VIP season pass holder 23-24"}
                 </Typography>
             </Box>
+
+
+            {/* Billing info section specific to guests*/}
+            {!employeeId && (
+                <>
+                    <BillingInfo
+                        firstName={firstName}
+                        lastName={lastName}
+                        email={email}
+                        guestId={guestId}
+                    />
+                </>
+            )}
 
             {/* Reservation/rental section specific to guests */}
             {!employeeId && (
@@ -743,13 +759,14 @@ function Dashboard() {
                     <Typography
                         variant="h4"
                         sx={{
-                            marginTop: '5rem',
+                            marginTop: '3rem',
                             marginBottom: '1rem',
                             fontFamily: 'Russo One, sans-serif'
                         }}
                     >
                         Rentals
                     </Typography>
+                    <Rentals guest_id={guestId} />
                 </>
             )}
 

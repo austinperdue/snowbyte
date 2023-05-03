@@ -259,6 +259,127 @@ app.get('/api/reservations/:guest_id', async (req, res) => {
   }
 });
 
+// API endpoint for retrieving guest rentals
+app.get('/api/rentals/:guest_id', async (req, res) => {
+  const { guest_id } = req.params;
+
+  // Check that guest_id is not undefined
+  if (guest_id === undefined) {
+    return res.status(400).json({ message: 'Missing guest ID' });
+  }
+
+  try {
+    // Query the database for rentals with the provided guest_id
+    const [rentalsRows] = await db.execute('SELECT * FROM rentals WHERE guest_id = ?', [guest_id]);
+
+    if (rentalsRows.length === 0) {
+      console.log('No rentals found for this guest ID: ', guest_id);
+      return res.status(200).json({
+        message: 'No rentals found for this guest ID',
+        rentals: []
+      });
+    }
+
+    // Return a success response with rental data
+    res.status(200).json({
+      message: 'Rentals fetched successfully',
+      rentals: rentalsRows
+    });
+  } catch (error) {
+    console.error('Error fetching rentals:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+// API endpoint for making a reservation
+app.post('/api/order', async (req, res) => {
+  console.log('A guest is placing an order!');
+  
+  const {
+    guestId,
+    checkInDate: rawCheckInDate,
+    checkOutDate: rawCheckOutDate,
+    rentalType,
+    roomType,
+    rentalDate: rawRentalDate,
+    returnDate: rawReturnDate,
+  } = req.body;
+
+  // generates random 8 digit number
+  const generateRandomId = () => {
+    return parseInt(crypto.randomBytes(4).toString('hex'), 16) % 100000000;
+  };
+
+  const checkinDate = new Date(rawCheckInDate).toISOString().replace('T', ' ').slice(0, 19);
+  const checkoutDate = new Date(rawCheckOutDate).toISOString().replace('T', ' ').slice(0, 19);
+  const rentalDate = new Date(rawRentalDate).toISOString().replace('T', ' ').slice(0, 19);
+  const returnDate = new Date(rawReturnDate).toISOString().replace('T', ' ').slice(0, 19);
+
+
+  console.log('req.body:', req.body); // debug
+
+  const connection = await db.getConnection();
+
+  try {
+    const reservationId = generateRandomId();
+    const rentalId = generateRandomId();
+    const employeeId = "ONLINE";
+
+    await connection.beginTransaction();
+
+    const [availableRooms] = await connection.query(
+      `SELECT room_id FROM rooms WHERE NOT EXISTS (
+        SELECT * FROM reservations WHERE
+        rooms.room_id = reservations.room_id AND
+        ((checkin_date BETWEEN ? AND ?) OR
+        (checkout_date BETWEEN ? AND ?)))`,
+      [checkinDate, checkoutDate, checkinDate, checkoutDate]
+    );
+
+    if (!availableRooms.length) {
+      throw new Error('No rooms available for the selected date range');
+    }
+
+    // Select the first available room
+    const roomId = availableRooms[0].room_id;
+
+    const [result] = await connection.query(
+      'INSERT INTO reservations (reservation_id, guest_id, employee_id, room_id, checkin_date, checkout_date) VALUES (?, ?, ?, ?, ?, ?)',
+      [reservationId, guestId, employeeId, roomId, checkinDate, checkoutDate]
+    );
+
+    if (!result.affectedRows) {
+      throw new Error('Failed to make a reservation');
+    }
+
+    // process rental if necessary
+    if (rentalType !== 'No rentals') {
+      const [rentalResult] = await connection.query(
+        'INSERT INTO rentals (rental_id, guest_id, employee_id, rental_type, rental_date, return_date) VALUES (?, ?, ?, ?, ?, ?)',
+        [rentalId, guestId, employeeId, rentalType, rentalDate, returnDate]
+      );
+
+      if (!rentalResult.affectedRows) {
+        throw new Error('Failed to make a rental');
+      }
+    }
+
+    await connection.commit();
+
+    res.status(200).json({
+      message: 'Reservation made successfully',
+      reservationId: reservationId,
+    });
+  } catch (error) {
+    await connection.rollback();
+    console.error('Error during reservation:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  } finally {
+    connection.release();
+  }
+});
+
 
 
 
